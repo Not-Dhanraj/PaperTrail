@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:moon_design/moon_design.dart';
-import 'package:proj_app/features/theme/domain/theme_model.dart';
+import 'package:proj_app/src/features/theme/domain/theme_model.dart';
 
 class FlexThemeProvider extends Notifier<ThemeModel> {
   ThemeMode currMode = ThemeMode.system;
@@ -15,8 +15,8 @@ class FlexThemeProvider extends Notifier<ThemeModel> {
   }
 
   void switchMode(ThemeMode newMode) {
-    state = state.copyWith(mode: newMode);
-    currMode = newMode;
+    state.currTheme = newMode;
+    ref.notifyListeners();
   }
 
   ThemeData lightTheme = FlexThemeData.light(
