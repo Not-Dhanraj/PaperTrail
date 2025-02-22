@@ -11,6 +11,7 @@ class PageViewService extends Notifier<PageViewNavigation> {
 
   void updateIndex(int i) {
     state.currentindex = i;
+    state.pageController.jumpToPage(i);
     ref.notifyListeners();
   }
 }
