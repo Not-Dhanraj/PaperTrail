@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:moon_design/moon_design.dart';
+import 'package:proj_app/src/features/theme/application/themer.dart';
 
 class NotesPage extends ConsumerWidget {
   const NotesPage({super.key});
@@ -44,6 +45,7 @@ class NotesPage extends ConsumerWidget {
               title: Text('Title goes Here'),
               subtitle: Text("This is the description of title"),
               trailing: const Icon(MoonIcons.controls_chevron_right_24_light),
+              onTap: () {},
             );
           },
         ),

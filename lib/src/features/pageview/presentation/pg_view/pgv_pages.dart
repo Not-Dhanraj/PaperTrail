@@ -3,6 +3,7 @@ import 'package:moon_design/moon_design.dart';
 import 'package:proj_app/src/features/exams/presentation/exams_page.dart';
 import 'package:proj_app/src/features/home/presentation/main_page.dart';
 import 'package:proj_app/src/features/notes/presentation/notes_page.dart';
+import 'package:proj_app/src/features/settings/presentation/settings_page.dart';
 
 class PageviewPages extends StatelessWidget {
   final int index;
@@ -18,7 +19,7 @@ class PageviewPages extends StatelessWidget {
       case 2:
         return ExamsPage();
       case 3:
-        return Center(child: Text("Page 4"));
+        return SettingsPage();
       default:
         return Center(child: MoonCircularLoader());
     }

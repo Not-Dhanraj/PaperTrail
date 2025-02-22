@@ -29,19 +29,6 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
       body: PageviewWidget(),
       bottomNavigationBar: BottomNav(),
-      floatingActionButton: Consumer(builder: (context, ref, child) {
-        var tp = ref.watch(themeProvider.notifier);
-        return FloatingActionButton(
-          onPressed: () {
-            if (Theme.of(context).brightness == Brightness.dark)
-              tp.switchMode(ThemeMode.light);
-            else
-              tp.switchMode(ThemeMode.dark);
-          },
-          tooltip: 'Increment',
-          child: const Icon(Icons.add),
-        );
-      }),
     );
   }
 }
