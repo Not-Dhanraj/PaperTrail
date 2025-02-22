@@ -12,10 +12,11 @@ class BottomNav extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     var pgViewService = ref.watch(pageViewService);
     var unselected = Theme.of(context)
-        .bottomNavigationBarTheme
-        .unselectedIconTheme
-        ?.color
-        ?.withValues(alpha: 0.7);
+            .bottomNavigationBarTheme
+            .unselectedIconTheme
+            ?.color
+            ?.withValues(alpha: 0.7) ??
+        const Color.fromARGB(255, 39, 39, 39);
     var selected =
         Theme.of(context).colorScheme.onSurface.withValues(alpha: .85);
 
@@ -37,7 +38,7 @@ class BottomNav extends ConsumerWidget {
       items: [
         FlashyTabBarItem(
           activeColor: selected,
-          inactiveColor: unselected!,
+          inactiveColor: unselected,
           icon: Icon(
             MoonIcons.generic_home_24_regular,
           ),

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:moon_design/moon_design.dart';
+import 'package:proj_app/src/features/home/presentation/main_page.dart';
 
 class PageviewPages extends StatelessWidget {
   final int index;
@@ -9,7 +10,7 @@ class PageviewPages extends StatelessWidget {
   Widget build(BuildContext context) {
     switch (index) {
       case 0:
-        return Center(child: Text("Page 1"));
+        return MainPage();
       case 1:
         return Center(child: Text("New 2"));
       case 2:
