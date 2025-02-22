@@ -16,7 +16,7 @@ class MainPage extends ConsumerWidget {
               "Home",
               style: Theme.of(context)
                   .textTheme
-                  .displaySmall
+                  .headlineLarge
                   ?.copyWith(fontWeight: FontWeight.bold),
             ),
           ),
