@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:moon_design/moon_design.dart';
+import 'package:proj_app/src/features/exams/endterms/presentation/endt_page.dart';
 import 'package:proj_app/src/features/exams/midterms/presentation/midt_page.dart';
+import 'package:proj_app/src/features/exams/solutions/presentation/sol_page.dart';
 
 class ExamsPage extends ConsumerStatefulWidget {
   const ExamsPage({super.key});
@@ -85,8 +87,8 @@ class _ExamsPageState extends ConsumerState<ExamsPage>
             controller: tabController,
             children: [
               MidTermsPage(),
-              Center(child: Text('End Terms')),
-              Center(child: Text('Solutions')),
+              EndTermPage(),
+              SolutionPage(),
             ],
           ),
         ),
