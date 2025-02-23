@@ -31,7 +31,7 @@ class _SplashLoadingPageState extends ConsumerState<SplashLoadingPage> {
 
   void navigatePages() {
     if (a == 0) {
-      navigatorKey.currentState?.push(MaterialPageRoute(
+      navigatorKey.currentState?.pushReplacement(MaterialPageRoute(
         builder: (context) {
           return MyHomePage(
             title: "TEst App",
@@ -39,7 +39,7 @@ class _SplashLoadingPageState extends ConsumerState<SplashLoadingPage> {
         },
       ));
     } else {
-      navigatorKey.currentState?.push(MaterialPageRoute(
+      navigatorKey.currentState?.pushReplacement(MaterialPageRoute(
         builder: (context) {
           return ErrorPage(
             onRetry: () {

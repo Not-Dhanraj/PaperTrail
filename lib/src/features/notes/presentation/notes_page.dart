@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:moon_design/moon_design.dart';
+import 'package:proj_app/src/common/data/sub_data.dart';
 
 class NotesPage extends ConsumerWidget {
   const NotesPage({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    var initData = ref.watch(subjectDataProvider);
+    var subData = initData.where((obj) => obj.ntItm != 0);
     return CustomScrollView(
       slivers: [
         SliverToBoxAdapter(
@@ -34,7 +37,7 @@ class NotesPage extends ConsumerWidget {
           ),
         ),
         SliverList.builder(
-          itemCount: 5,
+          itemCount: subData.length,
           itemBuilder: (context, index) {
             return ListTile(
               leading: MoonAvatar(
@@ -42,15 +45,22 @@ class NotesPage extends ConsumerWidget {
                 content: Icon(MoonIcons.files_add_24_regular),
               ),
               title: Text(
-                'Subject Name',
+                subData.elementAt(index).subName,
                 style: Theme.of(context)
                     .textTheme
                     .bodyLarge
                     ?.copyWith(fontWeight: FontWeight.bold),
               ),
-              subtitle: Text("This is the description of title"),
-              trailing: const Icon(MoonIcons.controls_chevron_right_24_light),
-              onTap: () {},
+              subtitle:
+                  Text("Subject Code: ${subData.elementAt(index).subCode}"),
+              trailing: MoonButton(
+                height: 35,
+                backgroundColor:
+                    Theme.of(context).dividerColor.withValues(alpha: 0.5),
+                label: Text('View'),
+                onTap: () {},
+              ),
+              // onTap: () {},
             );
           },
         ),
