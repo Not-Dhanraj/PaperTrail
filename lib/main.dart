@@ -1,9 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:proj_app/const.dart';
 import 'package:proj_app/src/app.dart';
 import 'package:proj_app/src/features/theme/application/themer.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
 
-void main() {
+void main() async {
+  await Supabase.initialize(
+    url: supUrl,
+    anonKey: annonKey,
+  );
   runApp(ProviderScope(child: const MyApp()));
 }
 

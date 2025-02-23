@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:proj_app/src/features/pageview/presentation/bottom_nav/bottom_nav.dart';
 import 'package:proj_app/src/features/pageview/presentation/pg_view/pageview_widget.dart';
-import 'package:proj_app/src/features/theme/application/themer.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key, required this.title});
@@ -29,6 +28,13 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
       body: PageviewWidget(),
       bottomNavigationBar: BottomNav(),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () async {
+          final supabase = Supabase.instance.client;
+
+          // print(await supabase.from('mt_papers').select());
+        },
+      ),
     );
   }
 }

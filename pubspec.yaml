@@ -38,6 +38,7 @@ dependencies:
   flashy_tab_bar2: ^0.0.10
   sprung: ^3.0.1
   entry: ^1.0.0
+  supabase_flutter: ^2.8.3
 
 dev_dependencies:
   flutter_lints: ^5.0.0

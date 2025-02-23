@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:moon_design/moon_design.dart';
-import 'package:proj_app/src/features/exams/endterms/presentation/endt_page.dart';
-import 'package:proj_app/src/features/exams/midterms/presentation/midt_page.dart';
+import 'package:proj_app/src/features/exams/presentation/endt_page.dart';
+import 'package:proj_app/src/features/exams/presentation/midt_page.dart';
 import 'package:proj_app/src/features/exams/solutions/presentation/sol_page.dart';
 
 class ExamsPage extends ConsumerStatefulWidget {
@@ -47,18 +46,18 @@ class _ExamsPageState extends ConsumerState<ExamsPage>
         SliverPersistentHeader(
           pinned: true,
           delegate: _SliverAppBarDelegate(
-            TabBar(
-              splashBorderRadius: BorderRadius.circular(6),
-              isScrollable: true,
-              tabAlignment: TabAlignment.start,
-              controller: tabController,
-              tabs: [
-                Tab(text: 'Midterms'),
-                Tab(text: 'End Terms'),
-                Tab(text: 'Solutions'),
-              ],
-            ),
-          ),
+              TabBar(
+                splashBorderRadius: BorderRadius.circular(6),
+                isScrollable: true,
+                tabAlignment: TabAlignment.start,
+                controller: tabController,
+                tabs: [
+                  Tab(text: 'Midterms'),
+                  Tab(text: 'End Terms'),
+                  Tab(text: 'Solutions'),
+                ],
+              ),
+              Theme.of(context).scaffoldBackgroundColor),
         ),
         SliverToBoxAdapter(
           child: Padding(
@@ -97,11 +96,12 @@ class _ExamsPageState extends ConsumerState<ExamsPage>
   }
 }
 
-///persistent tababr header.
+/// Persistent TabBar header with a red background.
 class _SliverAppBarDelegate extends SliverPersistentHeaderDelegate {
   final TabBar tabBar;
+  final Color color;
 
-  _SliverAppBarDelegate(this.tabBar);
+  _SliverAppBarDelegate(this.tabBar, this.color);
 
   @override
   double get minExtent => tabBar.preferredSize.height;
@@ -113,6 +113,7 @@ class _SliverAppBarDelegate extends SliverPersistentHeaderDelegate {
   Widget build(
       BuildContext context, double shrinkOffset, bool overlapsContent) {
     return Container(
+      color: color, // Red background color for the TabBar
       child: tabBar,
     );
   }
