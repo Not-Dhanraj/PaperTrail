@@ -15,7 +15,12 @@ class PageviewWidget extends ConsumerWidget {
       controller: pgService.pageController,
       physics: const NeverScrollableScrollPhysics(),
       itemBuilder: (context, index) {
-        return Entry.opacity(child: PageviewPages(index: index));
+        return Entry.offset(
+            yOffset: 20,
+            duration: Duration(milliseconds: 350),
+            child: Entry.opacity(
+                duration: Duration(milliseconds: 300),
+                child: PageviewPages(index: index)));
       },
     );
   }
