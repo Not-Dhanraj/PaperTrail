@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:moon_design/moon_design.dart';
 import 'package:proj_app/src/common/data/sub_data.dart';
+import 'package:proj_app/src/common/presentation/Item_page.dart';
 
 class NotesPage extends ConsumerWidget {
   const NotesPage({super.key});
@@ -58,7 +59,15 @@ class NotesPage extends ConsumerWidget {
                 backgroundColor:
                     Theme.of(context).dividerColor.withValues(alpha: 0.5),
                 label: Text('View'),
-                onTap: () {},
+                onTap: () {
+                  Navigator.of(context).push(MaterialPageRoute(
+                    builder: (context) {
+                      return ItemPage(
+                          type: "Notes",
+                          subCode: subData.elementAt(index).subCode);
+                    },
+                  ));
+                },
               ),
               // onTap: () {},
             );

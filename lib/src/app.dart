@@ -29,15 +29,15 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
       body: PageviewWidget(),
       bottomNavigationBar: BottomNav(),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () async {
-          final supabase = await SubRepoService().fetchSubjects();
+      // floatingActionButton: FloatingActionButton(
+      //   onPressed: () async {
+      //     final supabase = await SubRepoService().fetchSubjects();
 
-          if (kDebugMode) {
-            print(supabase.first.subCode);
-          }
-        },
-      ),
+      //     if (kDebugMode) {
+      //       print(supabase.first.subCode);
+      //     }
+      //   },
+      // ),
     );
   }
 }
