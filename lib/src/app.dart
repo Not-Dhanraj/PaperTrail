@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:proj_app/src/common/data/sub_item_repo.dart';
 import 'package:proj_app/src/features/pageview/presentation/bottom_nav/bottom_nav.dart';
 import 'package:proj_app/src/features/pageview/presentation/pg_view/pageview_widget.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
@@ -30,9 +31,9 @@ class _MyHomePageState extends State<MyHomePage> {
       bottomNavigationBar: BottomNav(),
       floatingActionButton: FloatingActionButton(
         onPressed: () async {
-          final supabase = Supabase.instance.client;
+          final supabase = await SubRepoService().fetchSubjects();
 
-          // print(await supabase.from('mt_papers').select());
+          print(supabase.first.subCode);
         },
       ),
     );
