@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:moon_design/moon_design.dart';
-import 'package:proj_app/src/features/theme/application/themer.dart';
 
 class NotesPage extends ConsumerWidget {
   const NotesPage({super.key});
