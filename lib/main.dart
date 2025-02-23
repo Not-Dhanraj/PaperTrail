@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:proj_app/const.dart';
-import 'package:proj_app/src/app.dart';
 import 'package:proj_app/src/common/presentation/splash_page.dart';
 import 'package:proj_app/src/features/theme/application/themer.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
@@ -25,8 +24,11 @@ class MyApp extends ConsumerWidget {
       themeMode: themeref.currTheme,
       theme: themeref.lightTheme,
       darkTheme: themeref.darkTheme,
+      navigatorKey: navigatorKey,
       home: SplashLoadingPage(),
       // home: const MyHomePage(title: 'Flutter Demo Home Page'),
     );
   }
 }
+
+final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
