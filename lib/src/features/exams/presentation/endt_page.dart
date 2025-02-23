@@ -11,12 +11,10 @@ class EndTermPage extends ConsumerWidget {
       itemCount: 15,
       itemBuilder: (context, index) {
         return ListTile(
-          // tileColor: Colors.grey,
           leading: MoonAvatar(
             backgroundColor: Theme.of(context).dividerColor,
             content: Icon(MoonIcons.files_add_24_regular),
           ),
-          // isThreeLine: true,
           title: Text(
             'Subject Name',
             style: Theme.of(context)
@@ -24,14 +22,9 @@ class EndTermPage extends ConsumerWidget {
                 .bodyLarge
                 ?.copyWith(fontWeight: FontWeight.bold),
           ),
-          subtitle: Text("This is the description of \ntitle"),
-          trailing: MoonButton(
-            height: 35,
-            backgroundColor:
-                Theme.of(context).dividerColor.withValues(alpha: 0.5),
-            label: Text('View'),
-            onTap: () {},
-          ),
+          subtitle: Text("This is the description of title"),
+          trailing: const Icon(MoonIcons.controls_chevron_right_24_light),
+          onTap: () {},
         );
       },
     );

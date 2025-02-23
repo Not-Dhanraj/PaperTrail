@@ -41,7 +41,13 @@ class NotesPage extends ConsumerWidget {
                 backgroundColor: Theme.of(context).dividerColor,
                 content: Icon(MoonIcons.files_add_24_regular),
               ),
-              title: Text('Title goes Here'),
+              title: Text(
+                'Subject Name',
+                style: Theme.of(context)
+                    .textTheme
+                    .bodyLarge
+                    ?.copyWith(fontWeight: FontWeight.bold),
+              ),
               subtitle: Text("This is the description of title"),
               trailing: const Icon(MoonIcons.controls_chevron_right_24_light),
               onTap: () {},
