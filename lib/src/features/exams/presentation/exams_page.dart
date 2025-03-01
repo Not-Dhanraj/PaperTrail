@@ -59,28 +59,28 @@ class _ExamsPageState extends ConsumerState<ExamsPage>
               ),
               Theme.of(context).scaffoldBackgroundColor),
         ),
-        SliverToBoxAdapter(
-          child: Padding(
-            padding: const EdgeInsets.only(top: 8, bottom: 5),
-            child: SizedBox(
-              height: 50,
-              child: ListView.builder(
-                itemCount: 10,
-                scrollDirection: Axis.horizontal,
-                itemBuilder: (context, index) {
-                  return Padding(
-                    padding:
-                        const EdgeInsets.symmetric(horizontal: 8, vertical: 5),
-                    child: ChoiceChip(
-                      label: Text('data'),
-                      selected: false,
-                    ),
-                  );
-                },
-              ),
-            ),
-          ),
-        ),
+        // SliverToBoxAdapter(
+        //   child: Padding(
+        //     padding: const EdgeInsets.only(top: 8, bottom: 5),
+        //     child: SizedBox(
+        //       height: 50,
+        //       child: ListView.builder(
+        //         itemCount: 10,
+        //         scrollDirection: Axis.horizontal,
+        //         itemBuilder: (context, index) {
+        //           return Padding(
+        //             padding:
+        //                 const EdgeInsets.symmetric(horizontal: 8, vertical: 5),
+        //             child: ChoiceChip(
+        //               label: Text('data'),
+        //               selected: false,
+        //             ),
+        //           );
+        //         },
+        //       ),
+        //     ),
+        //   ),
+        // ),
         SliverFillRemaining(
           child: TabBarView(
             controller: tabController,

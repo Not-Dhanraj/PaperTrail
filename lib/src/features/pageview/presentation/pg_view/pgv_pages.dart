@@ -13,12 +13,10 @@ class PageviewPages extends StatelessWidget {
   Widget build(BuildContext context) {
     switch (index) {
       case 0:
-        return MainPage();
-      case 1:
         return NotesPage();
-      case 2:
+      case 1:
         return ExamsPage();
-      case 3:
+      case 2:
         return SettingsPage();
       default:
         return Center(child: MoonCircularLoader());

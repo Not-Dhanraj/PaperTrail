@@ -1,6 +1,4 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:proj_app/src/common/data/sub_item_repo.dart';
 import 'package:proj_app/src/features/pageview/presentation/bottom_nav/bottom_nav.dart';
 import 'package:proj_app/src/features/pageview/presentation/pg_view/pageview_widget.dart';
 

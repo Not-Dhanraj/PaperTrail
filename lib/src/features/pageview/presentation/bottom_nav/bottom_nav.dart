@@ -36,16 +36,16 @@ class BottomNav extends ConsumerWidget {
         ref.watch(pageViewService.notifier).updateIndex(index);
       },
       items: [
-        FlashyTabBarItem(
-          activeColor: selected,
-          inactiveColor: unselected,
-          icon: Icon(
-            MoonIcons.generic_home_24_regular,
-          ),
-          title: Text(
-            'Home',
-          ),
-        ),
+        // FlashyTabBarItem(
+        //   activeColor: selected,
+        //   inactiveColor: unselected,
+        //   icon: Icon(
+        //     MoonIcons.generic_home_24_regular,
+        //   ),
+        //   title: Text(
+        //     'Home',
+        //   ),
+        // ),
         FlashyTabBarItem(
           activeColor: selected,
           inactiveColor: unselected,

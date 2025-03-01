@@ -11,7 +11,7 @@ class PageviewWidget extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     var pgService = ref.watch(pageViewService);
     return PageView.builder(
-      itemCount: 4,
+      itemCount: 3,
       controller: pgService.pageController,
       physics: const NeverScrollableScrollPhysics(),
       itemBuilder: (context, index) {
