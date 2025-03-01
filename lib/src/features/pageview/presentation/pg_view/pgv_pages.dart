@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:moon_design/moon_design.dart';
 import 'package:proj_app/src/features/exams/presentation/exams_page.dart';
-import 'package:proj_app/src/features/home/presentation/main_page.dart';
 import 'package:proj_app/src/features/notes/presentation/notes_page.dart';
 import 'package:proj_app/src/features/settings/presentation/settings_page.dart';
 

@@ -18,7 +18,7 @@ class SettingsPage extends ConsumerWidget {
             child: Container(
               padding: EdgeInsets.only(top: 30, left: 15, bottom: 5),
               child: Text(
-                "Settings",
+                "Settings & Info",
                 style: Theme.of(context)
                     .textTheme
                     .headlineLarge
@@ -41,12 +41,25 @@ class SettingsPage extends ConsumerWidget {
             padding: EdgeInsets.all(8),
           ),
           Text(
-            'Account Name',
+            'App name',
             style: Theme.of(context).textTheme.headlineMedium,
           ),
-          Text('AccountEmail@mail.com'),
+          Text('Created by BerserkDhanraj'),
           Padding(
             padding: EdgeInsets.all(8),
+          ),
+          Align(
+            alignment: Alignment.centerLeft,
+            child: Padding(
+              padding: const EdgeInsets.only(left: 10, top: 10, bottom: 3),
+              child: Text(
+                'Theme',
+                style: Theme.of(context)
+                    .textTheme
+                    .bodyLarge
+                    ?.copyWith(fontWeight: FontWeight.bold),
+              ),
+            ),
           ),
           ListTile(
             leading: Icon(MoonIcons.text_size_16_light),
@@ -65,44 +78,87 @@ class SettingsPage extends ConsumerWidget {
               },
             ),
           ),
+          Align(
+            alignment: Alignment.centerLeft,
+            child: Padding(
+              padding: const EdgeInsets.only(left: 10, top: 10, bottom: 3),
+              child: Text(
+                'Help and Feeback',
+                style: Theme.of(context)
+                    .textTheme
+                    .bodyLarge
+                    ?.copyWith(fontWeight: FontWeight.bold),
+              ),
+            ),
+          ),
           ListTile(
-            leading: Icon(MoonIcons.text_size_16_light),
+            leading: Icon(MoonIcons.mail_box_24_regular),
             title: Text('Submit Notes or Papers'),
             subtitle:
                 Text('Help us add more contet so others can easily find it'),
-            trailing: Icon(MoonIcons.arrows_boost_24_regular),
+            trailing: Icon(MoonIcons.arrows_right_24_regular),
             onTap: () {},
           ),
           ListTile(
-            leading: Icon(MoonIcons.text_size_16_light),
+            leading: Icon(MoonIcons.mail_envelope_24_regular),
             title: Text('Contact us!'),
             subtitle: Text('Reach out to use in case of any issues'),
-            trailing: Icon(MoonIcons.arrows_boost_24_regular),
+            trailing: Icon(MoonIcons.arrows_right_24_regular),
             onTap: () {},
           ),
-          ListTile(
-            leading: Icon(MoonIcons.text_size_16_light),
-            title: Text('Terms of Service'),
-            subtitle: Text('Read Terms of Service'),
-            trailing: Icon(MoonIcons.arrows_boost_24_regular),
-            onTap: () {},
+          // ListTile(
+          //   leading: Icon(MoonIcons.text_size_16_light),
+          //   title: Text('Terms of Service'),
+          //   subtitle: Text('Read Terms of Service'),
+          //   trailing: Icon(MoonIcons.arrows_boost_24_regular),
+          //   onTap: () {},
+          // ),
+          Align(
+            alignment: Alignment.centerLeft,
+            child: Padding(
+              padding: const EdgeInsets.only(left: 10, top: 10, bottom: 3),
+              child: Text(
+                'Legal',
+                style: Theme.of(context)
+                    .textTheme
+                    .bodyLarge
+                    ?.copyWith(fontWeight: FontWeight.bold),
+              ),
+            ),
           ),
           ListTile(
-            leading: Icon(MoonIcons.text_size_16_light),
+            leading: Icon(MoonIcons.generic_info_alternative_24_regular),
+            title: Text('Disclaimer'),
+            subtitle: Text('See Disclaimer'),
+            trailing: Icon(MoonIcons.arrows_right_24_regular),
+            onTap: () {
+              showLicensePage(context: context);
+            },
+          ),
+          ListTile(
+            leading: Icon(MoonIcons.files_code_24_regular),
             title: Text('Licenses'),
-            subtitle: Text('Read licenses'),
-            trailing: Icon(MoonIcons.arrows_boost_24_regular),
-            onTap: () {},
+            subtitle: Text('See Open Source Licenses'),
+            trailing: Icon(MoonIcons.arrows_right_24_regular),
+            onTap: () {
+              showLicensePage(context: context);
+            },
+          ),
+          Align(
+            alignment: Alignment.centerLeft,
+            child: Padding(
+              padding: const EdgeInsets.only(left: 10, top: 10, bottom: 3),
+              child: Text(
+                'App Info',
+                style: Theme.of(context)
+                    .textTheme
+                    .bodyLarge
+                    ?.copyWith(fontWeight: FontWeight.bold),
+              ),
+            ),
           ),
           ListTile(
-            leading: Icon(MoonIcons.text_size_16_light),
-            title: Text('About Us'),
-            subtitle: Text('Know more about us'),
-            trailing: Icon(MoonIcons.arrows_boost_24_regular),
-            onTap: () {},
-          ),
-          ListTile(
-            leading: Icon(MoonIcons.text_size_16_light),
+            leading: Icon(MoonIcons.software_code_24_regular),
             title: Text('App Version'),
             subtitle: Text('v0.1-alpha'),
             onTap: () {},
