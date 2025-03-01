@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_email_sender/flutter_email_sender.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:moon_design/moon_design.dart';
 import 'package:proj_app/src/features/theme/application/themer.dart';
@@ -41,10 +42,10 @@ class SettingsPage extends ConsumerWidget {
             padding: EdgeInsets.all(8),
           ),
           Text(
-            'App name',
+            'PaperTrail',
             style: Theme.of(context).textTheme.headlineMedium,
           ),
-          Text('Created by BerserkDhanraj'),
+          Text('Curated with Care'),
           Padding(
             padding: EdgeInsets.all(8),
           ),
@@ -95,16 +96,34 @@ class SettingsPage extends ConsumerWidget {
             leading: Icon(MoonIcons.mail_box_24_regular),
             title: Text('Submit Notes or Papers'),
             subtitle:
-                Text('Help us add more contet so others can easily find it'),
+                Text('Help us add more content so others can easily find it'),
             trailing: Icon(MoonIcons.arrows_right_24_regular),
-            onTap: () {},
+            onTap: () async {
+              final Email email = Email(
+                body: '',
+                subject: 'Sending new content to add in app',
+                recipients: ['paradoxstudios91@gmail.com'],
+                isHTML: false,
+              );
+
+              await FlutterEmailSender.send(email);
+            },
           ),
           ListTile(
             leading: Icon(MoonIcons.mail_envelope_24_regular),
             title: Text('Contact us!'),
             subtitle: Text('Reach out to use in case of any issues'),
             trailing: Icon(MoonIcons.arrows_right_24_regular),
-            onTap: () {},
+            onTap: () async {
+              final Email email = Email(
+                body: '',
+                subject: 'Help regarding app',
+                recipients: ['paradoxstudios91@gmail.com'],
+                isHTML: false,
+              );
+
+              await FlutterEmailSender.send(email);
+            },
           ),
           // ListTile(
           //   leading: Icon(MoonIcons.text_size_16_light),
@@ -139,37 +158,40 @@ class SettingsPage extends ConsumerWidget {
                     padding: const EdgeInsets.symmetric(horizontal: 32),
                     child: MoonModal(
                       child: IntrinsicHeight(
-                        child: Padding(
-                          padding: const EdgeInsets.all(15.0),
-                          child: Column(
-                            children: [
-                              Icon(
-                                MoonIcons.generic_about_24_regular,
-                                size: 30,
-                              ),
-                              // Text(
-                              //   "Disclaimer",
-                              //   style: Theme.of(context)
-                              //       .textTheme
-                              //       .bodyLarge!
-                              //       .copyWith(fontWeight: FontWeight.bold),
-                              // ),
-                              Divider(),
-
-                              SizedBox(
-                                height: 8,
-                              ),
-                              Text(
-                                  "All the content which are present in the app are for personal use only! Please do not repost the things downloaded from here to other platforms."),
-                              Center(
-                                child: MoonButton(
-                                  label: Text('Okay'),
-                                  onTap: () {
-                                    Navigator.of(context).pop();
-                                  },
+                        child: Material(
+                          type: MaterialType.transparency,
+                          child: Padding(
+                            padding: const EdgeInsets.all(15.0),
+                            child: Column(
+                              children: [
+                                Icon(
+                                  MoonIcons.generic_about_24_regular,
+                                  size: 30,
                                 ),
-                              )
-                            ],
+                                // Text(
+                                //   "Disclaimer",
+                                //   style: Theme.of(context)
+                                //       .textTheme
+                                //       .bodyLarge!
+                                //       .copyWith(fontWeight: FontWeight.bold),
+                                // ),
+                                Divider(),
+
+                                SizedBox(
+                                  height: 8,
+                                ),
+                                Text(
+                                    "All the content which are present in the app are for personal use only! Please do not repost the things downloaded from here to other platforms."),
+                                Center(
+                                  child: MoonButton(
+                                    label: Text('Okay'),
+                                    onTap: () {
+                                      Navigator.of(context).pop();
+                                    },
+                                  ),
+                                )
+                              ],
+                            ),
                           ),
                         ),
                       ),
