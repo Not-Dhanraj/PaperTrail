@@ -132,7 +132,51 @@ class SettingsPage extends ConsumerWidget {
             subtitle: Text('See Disclaimer'),
             trailing: Icon(MoonIcons.arrows_right_24_regular),
             onTap: () {
-              showLicensePage(context: context);
+              showMoonModal<void>(
+                context: context,
+                builder: (BuildContext context) {
+                  return Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 32),
+                    child: MoonModal(
+                      child: IntrinsicHeight(
+                        child: Padding(
+                          padding: const EdgeInsets.all(15.0),
+                          child: Column(
+                            children: [
+                              Icon(
+                                MoonIcons.generic_about_24_regular,
+                                size: 30,
+                              ),
+                              // Text(
+                              //   "Disclaimer",
+                              //   style: Theme.of(context)
+                              //       .textTheme
+                              //       .bodyLarge!
+                              //       .copyWith(fontWeight: FontWeight.bold),
+                              // ),
+                              Divider(),
+
+                              SizedBox(
+                                height: 8,
+                              ),
+                              Text(
+                                  "All the content which are present in the app are for personal use only! Please do not repost the things downloaded from here to other platforms."),
+                              Center(
+                                child: MoonButton(
+                                  label: Text('Okay'),
+                                  onTap: () {
+                                    Navigator.of(context).pop();
+                                  },
+                                ),
+                              )
+                            ],
+                          ),
+                        ),
+                      ),
+                    ),
+                  );
+                },
+              );
             },
           ),
           ListTile(
@@ -161,7 +205,6 @@ class SettingsPage extends ConsumerWidget {
             leading: Icon(MoonIcons.software_code_24_regular),
             title: Text('App Version'),
             subtitle: Text('v0.1-alpha'),
-            onTap: () {},
           ),
           Divider(),
           SizedBox(
