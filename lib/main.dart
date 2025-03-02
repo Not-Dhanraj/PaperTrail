@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_displaymode/flutter_displaymode.dart';
@@ -8,7 +10,8 @@ import 'package:papertrail/src/features/theme/application/themer.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 void main() async {
-  await _initDisplayMode();
+  WidgetsFlutterBinding.ensureInitialized();
+  Platform.isAndroid ? await _initDisplayMode() : null;
   await Supabase.initialize(
     url: supUrl,
     anonKey: annonKey,
@@ -18,7 +21,6 @@ void main() async {
 
 Future<void> _initDisplayMode() async {
   try {
-    WidgetsFlutterBinding.ensureInitialized();
     double max = 0.0;
     late DisplayMode maxMode;
     final modes = await FlutterDisplayMode.supported;
