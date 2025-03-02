@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:moon_design/moon_design.dart';
 import 'package:papertrail/src/common/domain/items_info.dart';
+import 'package:papertrail/src/common/presentation/pdf_viewer.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 class ItemPage extends ConsumerWidget {
@@ -113,7 +114,15 @@ class ItemPage extends ConsumerWidget {
                                   .surface
                                   .withValues(alpha: 0.5),
                               label: Text('View'),
-                              onTap: () {},
+                              onTap: () {
+                                Navigator.of(context).push(MaterialPageRoute(
+                                  builder: (context) {
+                                    return PdfViewerPage(
+                                        name: data.elementAt(index).fName,
+                                        link: data.elementAt(index).fLink);
+                                  },
+                                ));
+                              },
                             ),
                           ),
                         );

@@ -26,16 +26,16 @@ class ErrorPage extends StatelessWidget {
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              Container(
-                height: 200,
-                width: 200,
-                decoration: const BoxDecoration(),
-                child: Image.network(
-                    'https://images.pexels.com/photos/30729229/pexels-photo-30729229/free-photo-of-beautiful-pink-and-white-rose-with-dew.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2'),
+              Card(
+                child: Image.asset(
+                  'assets/icon/icon.png',
+                  height: 150,
+                  width: 150,
+                ),
               ),
               const SizedBox(height: 32),
               const Text(
-                'Oops!',
+                'Oops! Error Occured',
                 style: TextStyle(
                   fontSize: 36,
                   fontWeight: FontWeight.bold,

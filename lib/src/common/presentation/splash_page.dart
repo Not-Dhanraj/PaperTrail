@@ -4,6 +4,7 @@ import 'package:papertrail/main.dart';
 import 'package:papertrail/src/app.dart';
 import 'package:papertrail/src/common/data/sub_data.dart';
 import 'package:papertrail/src/common/presentation/error_page.dart';
+import 'package:restart_app/restart_app.dart';
 
 class SplashLoadingPage extends ConsumerStatefulWidget {
   const SplashLoadingPage({super.key});
@@ -34,7 +35,7 @@ class _SplashLoadingPageState extends ConsumerState<SplashLoadingPage> {
       navigatorKey.currentState?.pushReplacement(MaterialPageRoute(
         builder: (context) {
           return MyHomePage(
-            title: "TEst App",
+            title: "PaperTrail",
           );
         },
       ));
@@ -43,7 +44,7 @@ class _SplashLoadingPageState extends ConsumerState<SplashLoadingPage> {
         builder: (context) {
           return ErrorPage(
             onRetry: () {
-              //TODO implement toRetry
+              Restart.restartApp();
             },
           );
         },
@@ -54,39 +55,49 @@ class _SplashLoadingPageState extends ConsumerState<SplashLoadingPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(
-        decoration: const BoxDecoration(
-          gradient: LinearGradient(
-            colors: [Color(0xFF6A1B9A), Color(0xFF8E24AA)],
-            begin: Alignment.topLeft,
-            end: Alignment.bottomRight,
-          ),
-        ),
-        child: Center(
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Icon(
-                Icons.flutter_dash,
-                size: 100,
-                color: Colors.white,
-              ),
-              const SizedBox(height: 30),
-              const CircularProgressIndicator(
-                valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
-                strokeWidth: 4,
-              ),
-              const SizedBox(height: 20),
-              const Text(
-                'Loading...',
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 18,
-                  letterSpacing: 1.2,
+      body: Center(
+        child: Stack(
+          fit: StackFit.loose,
+          children: [
+            Center(
+              child: Card(
+                child: Image.asset(
+                  'assets/icon/icon.png',
+                  height: 150,
+                  width: 150,
                 ),
               ),
-            ],
-          ),
+            ),
+            Align(
+              alignment: Alignment.bottomCenter,
+              child: Padding(
+                padding: EdgeInsets.only(bottom: 50),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    SizedBox(
+                        height: 15,
+                        width: 15,
+                        child: CircularProgressIndicator(
+                          color: Colors.deepPurple[900],
+                        )),
+                    SizedBox(
+                      width: 20,
+                    ),
+                    const Text(
+                      'Loading...',
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 18,
+                        letterSpacing: 1.2,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ],
         ),
       ),
     );
