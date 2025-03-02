@@ -1,11 +1,11 @@
 {
-    "name": "proj_app",
-    "short_name": "proj_app",
+    "name": "PaperTrail",
+    "short_name": "PaperTrail",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#80f0ff",
     "theme_color": "#80f0ff",
-    "description": "A new Flutter project.",
+    "description": "Notes. Papers. Solutions. Sorted!",
     "orientation": "portrait-primary",
     "prefer_related_applications": false,
     "icons": [
