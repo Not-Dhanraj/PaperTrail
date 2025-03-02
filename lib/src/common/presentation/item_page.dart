@@ -6,10 +6,13 @@ import 'package:supabase_flutter/supabase_flutter.dart';
 
 class ItemPage extends ConsumerWidget {
   final String type;
+  final int subId;
   final List<String> subCode;
+
   const ItemPage({
     super.key,
     required this.type,
+    required this.subId,
     required this.subCode,
   });
 
@@ -20,13 +23,13 @@ class ItemPage extends ConsumerWidget {
         case "Notes":
           return "notes";
         case "Mid Term":
-          return "mt_papers";
+          return "mt_paper";
         case "End Term":
-          return "et_papers";
+          return "et_paper";
         case "Solutions":
           return "solutions";
         default:
-          return "mt_papers";
+          return "mt_paper";
       }
     }
 
@@ -34,7 +37,7 @@ class ItemPage extends ConsumerWidget {
       final List<dynamic> response = await Supabase.instance.client
           .from(await getDb())
           .select()
-          .eq('sub_code', subCode);
+          .eq('paper_id', subId);
       return response.map((json) => ItemsInfo.fromJson(json)).toList();
     }
 

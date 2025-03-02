@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:moon_design/moon_design.dart';
 import 'package:papertrail/src/common/data/sub_data.dart';
-import 'package:papertrail/src/common/presentation/Item_page.dart';
+import 'package:papertrail/src/common/presentation/item_page.dart';
 
 class SolutionPage extends ConsumerWidget {
   const SolutionPage({super.key});
@@ -36,6 +36,7 @@ class SolutionPage extends ConsumerWidget {
               Navigator.of(context).push(MaterialPageRoute(
                 builder: (context) {
                   return ItemPage(
+                      subId: subData.elementAt(index).id,
                       type: "Solutions",
                       subCode: subData.elementAt(index).subCode);
                 },
