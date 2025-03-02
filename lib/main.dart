@@ -18,18 +18,9 @@ void main() async {
 
 Future<void> _initDisplayMode() async {
   try {
-    double max = 0.0;
-    late DisplayMode maxMode;
-    final modes = await FlutterDisplayMode.supported;
-    for (var mode in modes) {
-      final current = (mode.width * mode.height * mode.refreshRate);
-      if (current > max) {
-        maxMode = mode;
-        max = current;
-      }
-    }
+    var modes = await FlutterDisplayMode.supported;
 
-    FlutterDisplayMode.setPreferredMode(maxMode);
+    await FlutterDisplayMode.setPreferredMode(modes[1]);
   } on PlatformException catch (exception, stackTrace) {
     debugPrint("$exception\n$stackTrace");
   } catch (exception, stackTrace) {
