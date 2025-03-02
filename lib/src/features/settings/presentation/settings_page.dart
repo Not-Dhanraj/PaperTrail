@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_email_sender/flutter_email_sender.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:moon_design/moon_design.dart';
+import 'package:proj_app/src/common/data/const.dart';
 import 'package:proj_app/src/features/theme/application/themer.dart';
 
 class SettingsPage extends ConsumerWidget {
@@ -27,25 +28,23 @@ class SettingsPage extends ConsumerWidget {
               ),
             ),
           ),
-          Padding(padding: EdgeInsets.only(top: 40)),
+          Padding(padding: EdgeInsets.only(top: 30)),
           Card(
             child: SizedBox(
               height: 120,
               width: 120,
-              child: Image.network(
-                  fit: BoxFit.cover,
-                  height: 120,
-                  'https://images.pexels.com/photos/30729229/pexels-photo-30729229/free-photo-of-beautiful-pink-and-white-rose-with-dew.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2'),
+              child: Image.asset(
+                  fit: BoxFit.cover, height: 120, 'assets/icon/icon.png'),
             ),
           ),
           Padding(
             padding: EdgeInsets.all(8),
           ),
           Text(
-            'PaperTrail',
+            Constants().appName,
             style: Theme.of(context).textTheme.headlineMedium,
           ),
-          Text('Curated with Care'),
+          Text('Notes. Papers. Solutions. Sorted!'),
           Padding(
             padding: EdgeInsets.all(8),
           ),
@@ -207,7 +206,20 @@ class SettingsPage extends ConsumerWidget {
             subtitle: Text('See Open Source Licenses'),
             trailing: Icon(MoonIcons.arrows_right_24_regular),
             onTap: () {
-              showLicensePage(context: context);
+              showLicensePage(
+                context: context,
+                applicationName: Constants().appName,
+                applicationLegalese: Constants().appDev,
+                applicationVersion: Constants().appVersion,
+                applicationIcon: Card(
+                  child: SizedBox(
+                    height: 120,
+                    width: 120,
+                    child: Image.asset(
+                        fit: BoxFit.cover, height: 120, 'assets/icon/icon.png'),
+                  ),
+                ),
+              );
             },
           ),
           Align(
