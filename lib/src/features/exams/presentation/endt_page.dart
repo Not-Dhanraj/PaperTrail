@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:moon_design/moon_design.dart';
 import 'package:papertrail/src/common/data/sub_data.dart';
-import 'package:papertrail/src/common/presentation/Item_page.dart';
+import 'package:papertrail/src/common/presentation/item_page.dart';
 
 class EndTermPage extends ConsumerWidget {
   const EndTermPage({super.key});
@@ -37,6 +37,7 @@ class EndTermPage extends ConsumerWidget {
                 builder: (context) {
                   return ItemPage(
                       type: "End Term",
+                      subId: subData.elementAt(index).id,
                       subCode: subData.elementAt(index).subCode);
                 },
               ));

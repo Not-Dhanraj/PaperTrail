@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:moon_design/moon_design.dart';
 import 'package:papertrail/src/common/data/sub_data.dart';
-import 'package:papertrail/src/common/presentation/Item_page.dart';
+import 'package:papertrail/src/common/presentation/item_page.dart';
 
 class MidTermsPage extends ConsumerWidget {
   const MidTermsPage({super.key});
@@ -36,8 +36,10 @@ class MidTermsPage extends ConsumerWidget {
               Navigator.of(context).push(MaterialPageRoute(
                 builder: (context) {
                   return ItemPage(
-                      type: "Mid Term",
-                      subCode: subData.elementAt(index).subCode);
+                    type: "Mid Term",
+                    subId: subData.elementAt(index).id,
+                    subCode: subData.elementAt(index).subCode,
+                  );
                 },
               ));
             },

@@ -1,4 +1,5 @@
 class SubjectItems {
+  final int id;
   final List<String> subCode;
   final String subName;
   final int mtItm;
@@ -9,6 +10,7 @@ class SubjectItems {
   SubjectItems(
       {required this.subCode,
       required this.subName,
+      required this.id,
       required this.mtItm,
       required this.solItm,
       required this.etItm,
@@ -26,6 +28,7 @@ class SubjectItems {
 
     return SubjectItems(
       subCode: subCodes,
+      id: json['id'] as int,
       subName: json['sub_name'] as String,
       mtItm: json['mt_itms'] as int,
       solItm: json['nots_itms'] as int,
