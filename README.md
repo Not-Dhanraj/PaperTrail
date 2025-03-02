@@ -1,4 +1,4 @@
-# proj_app
+# papertrail
 
 A new Flutter project.
 

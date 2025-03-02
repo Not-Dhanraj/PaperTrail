@@ -1,5 +1,5 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:proj_app/src/common/domain/sub_items.dart';
+import 'package:papertrail/src/common/domain/sub_items.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 class SubRepoService {

@@ -1,8 +1,8 @@
 import 'package:entry/entry.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:proj_app/src/features/pageview/application/pgv_service.dart';
-import 'package:proj_app/src/features/pageview/presentation/pg_view/pgv_pages.dart';
+import 'package:papertrail/src/features/pageview/application/pgv_service.dart';
+import 'package:papertrail/src/features/pageview/presentation/pg_view/pgv_pages.dart';
 
 class PageviewWidget extends ConsumerWidget {
   const PageviewWidget({super.key});

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:proj_app/src/features/exams/presentation/endt_page.dart';
-import 'package:proj_app/src/features/exams/presentation/midt_page.dart';
-import 'package:proj_app/src/features/exams/solutions/presentation/sol_page.dart';
+import 'package:papertrail/src/features/exams/presentation/endt_page.dart';
+import 'package:papertrail/src/features/exams/presentation/midt_page.dart';
+import 'package:papertrail/src/features/exams/solutions/presentation/sol_page.dart';
 
 class ExamsPage extends ConsumerStatefulWidget {
   const ExamsPage({super.key});

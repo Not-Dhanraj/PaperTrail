@@ -2,7 +2,7 @@ import 'package:flashy_tab_bar2/flashy_tab_bar2.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:moon_design/moon_design.dart';
-import 'package:proj_app/src/features/pageview/application/pgv_service.dart';
+import 'package:papertrail/src/features/pageview/application/pgv_service.dart';
 import 'package:sprung/sprung.dart';
 
 class BottomNav extends ConsumerWidget {

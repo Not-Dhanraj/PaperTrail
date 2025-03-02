@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:moon_design/moon_design.dart';
-import 'package:proj_app/src/common/domain/items_info.dart';
+import 'package:papertrail/src/common/domain/items_info.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 class ItemPage extends ConsumerWidget {

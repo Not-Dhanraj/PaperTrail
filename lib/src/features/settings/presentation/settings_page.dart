@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_email_sender/flutter_email_sender.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:moon_design/moon_design.dart';
-import 'package:proj_app/src/common/data/const.dart';
-import 'package:proj_app/src/features/theme/application/themer.dart';
+import 'package:papertrail/src/common/data/const.dart';
+import 'package:papertrail/src/features/theme/application/themer.dart';
 
 class SettingsPage extends ConsumerWidget {
   const SettingsPage({super.key});

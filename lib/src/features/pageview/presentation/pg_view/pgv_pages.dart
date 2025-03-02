@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:moon_design/moon_design.dart';
-import 'package:proj_app/src/features/exams/presentation/exams_page.dart';
-import 'package:proj_app/src/features/notes/presentation/notes_page.dart';
-import 'package:proj_app/src/features/settings/presentation/settings_page.dart';
+import 'package:papertrail/src/features/exams/presentation/exams_page.dart';
+import 'package:papertrail/src/features/notes/presentation/notes_page.dart';
+import 'package:papertrail/src/features/settings/presentation/settings_page.dart';
 
 class PageviewPages extends StatelessWidget {
   final int index;

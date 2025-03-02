@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:proj_app/src/features/pageview/domain/pgv_nav.dart';
+import 'package:papertrail/src/features/pageview/domain/pgv_nav.dart';
 
 class PageViewService extends Notifier<PageViewNavigation> {
   @override

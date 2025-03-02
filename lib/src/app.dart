@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:proj_app/src/features/pageview/presentation/bottom_nav/bottom_nav.dart';
-import 'package:proj_app/src/features/pageview/presentation/pg_view/pageview_widget.dart';
+import 'package:papertrail/src/features/pageview/presentation/bottom_nav/bottom_nav.dart';
+import 'package:papertrail/src/features/pageview/presentation/pg_view/pageview_widget.dart';
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key, required this.title});

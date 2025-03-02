@@ -1,4 +1,4 @@
-package com.example.proj_app
+package com.example.papertrail
 
 import io.flutter.embedding.android.FlutterActivity
 

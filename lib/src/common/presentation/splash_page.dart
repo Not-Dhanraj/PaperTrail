@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:proj_app/main.dart';
-import 'package:proj_app/src/app.dart';
-import 'package:proj_app/src/common/data/sub_data.dart';
-import 'package:proj_app/src/common/presentation/error_page.dart';
+import 'package:papertrail/main.dart';
+import 'package:papertrail/src/app.dart';
+import 'package:papertrail/src/common/data/sub_data.dart';
+import 'package:papertrail/src/common/presentation/error_page.dart';
 
 class SplashLoadingPage extends ConsumerStatefulWidget {
   const SplashLoadingPage({super.key});

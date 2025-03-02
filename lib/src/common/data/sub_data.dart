@@ -1,7 +1,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:proj_app/src/common/data/sub_item_repo.dart';
-import 'package:proj_app/src/common/domain/sub_items.dart';
+import 'package:papertrail/src/common/data/sub_item_repo.dart';
+import 'package:papertrail/src/common/domain/sub_items.dart';
 
 class SubjectItemsNotifier extends Notifier<List<SubjectItems>> {
   @override
