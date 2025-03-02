@@ -17,6 +17,7 @@ class SubjectItemsNotifier extends Notifier<List<SubjectItems>> {
       if (kDebugMode) {
         print("length: ${state.length}");
       }
+      if (state.isEmpty) return 1;
       return 0;
     } catch (e) {
       return 1;
