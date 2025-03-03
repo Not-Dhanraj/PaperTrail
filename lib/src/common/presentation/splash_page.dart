@@ -88,7 +88,6 @@ class _SplashLoadingPageState extends ConsumerState<SplashLoadingPage> {
                     const Text(
                       'Loading...',
                       style: TextStyle(
-                        color: Colors.white,
                         fontSize: 18,
                         letterSpacing: 1.2,
                       ),

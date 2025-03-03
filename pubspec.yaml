@@ -28,45 +28,41 @@ environment:
 # the latest version available on pub.dev. To see which dependencies have newer
 # versions available, run `flutter pub outdated`.
 dependencies:
+  entry: ^1.0.0
+  flashy_tab_bar2: ^0.0.10
   flex_color_scheme: ^8.1.1
   flutter:
     sdk: flutter
+  flutter_cache_manager: ^3.4.1
+  flutter_displaymode: ^0.6.0
+  flutter_email_sender: ^7.0.0
   flutter_riverpod: ^2.6.1
   google_fonts: ^6.2.1
-  moon_icons: ^1.1.0
-  moon_design: ^1.1.0
-  flashy_tab_bar2: ^0.0.10
-  sprung: ^3.0.1
-  entry: ^1.0.0
-  supabase_flutter: ^2.8.3
-  flutter_email_sender: ^7.0.0
-  flutter_displaymode: ^0.6.0
-  flutter_cache_manager: ^3.4.1
   mini_pdf_epub_viewer: ^0.1.2
+  moon_design: ^1.1.0
+  moon_icons: ^1.1.0
   restart_app: ^1.3.2
+  sprung: ^3.0.1
+  supabase_flutter: ^2.8.3
 
 dev_dependencies:
+  flutter_launcher_icons: ^0.14.3
   flutter_lints: ^5.0.0
   flutter_test:
     sdk: flutter
-  flutter_launcher_icons: ^0.14.3
-  # package_rename: any
 
 # package_rename_config:
 #   android:
 #     app_name: "PaperTrail"
 #     package_name: "dev.paradox.papertrail"
-
 #   web:
 #     app_name: "PaperTrail"
 #     description: "Notes. Papers. Solutions. Sorted!"
-
 #   windows:
 #     app_name: "PaperTrail"
 #     organization: "Paradox Studios"
 #     copyright_notice: "© 2025, Paradox Studios, All RIghts Reserved"
 #     exe_name: "PaperTrail"
-
 flutter_launcher_icons:
   #  image_path: "assets/images/icon-128x128.png"
   image_path_android: "assets/icon/icon.png"
