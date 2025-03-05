@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:moon_design/moon_design.dart';
 import 'package:papertrail/src/common/domain/items_info.dart';
-import 'package:papertrail/src/common/presentation/pdf_viewer.dart';
 import 'package:papertrail/src/common/services/downloader_service.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
@@ -90,10 +89,6 @@ class ItemPage extends ConsumerWidget {
                           child: ListTile(
                             shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(6)),
-                            tileColor: Theme.of(context)
-                                .colorScheme
-                                .surface
-                                .withValues(alpha: 0.5),
                             leading: MoonAvatar(
                               backgroundColor: Theme.of(context)
                                   .colorScheme
@@ -105,13 +100,12 @@ class ItemPage extends ConsumerWidget {
                               name[0].toUpperCase() +
                                   name.substring(1).toLowerCase(),
                             ),
-                            // subtitle: Text("Subject Code: $subCode"),
+                            subtitle: Text("Subject Code: $subCode"),
                             trailing: MoonButton(
                               height: 35,
                               backgroundColor: Theme.of(context)
-                                  .colorScheme
-                                  .surface
-                                  .withValues(alpha: 0.5),
+                                  .dividerColor
+                                  .withValues(alpha: 0.2),
                               label: Text('View'),
                               onTap: () {
                                 ref
