@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:papertrail/src/features/exams/Quiz/presentation/quiz_page.dart';
 import 'package:papertrail/src/features/exams/presentation/endt_page.dart';
 import 'package:papertrail/src/features/exams/presentation/midt_page.dart';
-import 'package:papertrail/src/features/exams/solutions/presentation/sol_page.dart';
-import 'package:papertrail/src/features/search/presentation/search_page.dart';
+import 'package:papertrail/src/features/search/services/search_service.dart';
 
 class ExamsPage extends ConsumerStatefulWidget {
   const ExamsPage({super.key});
@@ -18,8 +18,13 @@ class _ExamsPageState extends ConsumerState<ExamsPage>
 
   @override
   void initState() {
-    tabController = TabController(length: 4, vsync: this);
     super.initState();
+    tabController = TabController(length: 3, vsync: this);
+    tabController.addListener(() {
+      if (tabController.indexIsChanging) {
+        ref.invalidate(searchQueryProvider); // Reset search when tab changes
+      }
+    });
   }
 
   @override
@@ -36,7 +41,7 @@ class _ExamsPageState extends ConsumerState<ExamsPage>
           child: Container(
             padding: EdgeInsets.only(top: 30, left: 15, bottom: 10),
             child: Text(
-              "Midterm and End Term Questions",
+              "Midterm, Endterm & Quiz Questions",
               style: Theme.of(context)
                   .textTheme
                   .headlineLarge
@@ -55,8 +60,7 @@ class _ExamsPageState extends ConsumerState<ExamsPage>
                 tabs: [
                   Tab(text: 'Midterms'),
                   Tab(text: 'End Terms'),
-                  Tab(text: 'Solutions'),
-                  Tab(text: 'Search'),
+                  Tab(text: 'Quizzes'),
                 ],
               ),
               Theme.of(context).scaffoldBackgroundColor),
@@ -89,8 +93,7 @@ class _ExamsPageState extends ConsumerState<ExamsPage>
             children: [
               MidTermsPage(),
               EndTermPage(),
-              SolutionPage(),
-              SearchPage()
+              QuizPage(),
             ],
           ),
         ),

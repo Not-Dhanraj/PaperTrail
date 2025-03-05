@@ -4,7 +4,7 @@ class SubjectItems {
   final String subName;
   final int mtItm;
   final int etItm;
-  final int solItm;
+  final int quizItms;
   final int ntItm;
 
   SubjectItems(
@@ -12,7 +12,7 @@ class SubjectItems {
       required this.subName,
       required this.id,
       required this.mtItm,
-      required this.solItm,
+      required this.quizItms,
       required this.etItm,
       required this.ntItm});
 
@@ -31,7 +31,7 @@ class SubjectItems {
       id: json['id'] as int,
       subName: json['sub_name'] as String,
       mtItm: json['mt_itms'] as int,
-      solItm: json['nots_itms'] as int,
+      quizItms: json['quiz_itms'] as int,
       etItm: json['et_itms'] as int,
       ntItm: json['nots_itms'] as int,
     );

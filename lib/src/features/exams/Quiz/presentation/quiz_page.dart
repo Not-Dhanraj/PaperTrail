@@ -4,13 +4,13 @@ import 'package:moon_design/moon_design.dart';
 import 'package:papertrail/src/common/data/sub_data.dart';
 import 'package:papertrail/src/common/presentation/item_page.dart';
 
-class SolutionPage extends ConsumerWidget {
-  const SolutionPage({super.key});
+class QuizPage extends ConsumerWidget {
+  const QuizPage({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     var initData = ref.watch(subjectDataProvider);
-    var subData = initData.where((obj) => obj.solItm != 0);
+    var subData = initData.where((obj) => obj.quizItms != 0);
     return ListView.builder(
       itemCount: subData.length,
       itemBuilder: (context, index) {
@@ -37,7 +37,7 @@ class SolutionPage extends ConsumerWidget {
                 builder: (context) {
                   return ItemPage(
                       subId: subData.elementAt(index).id,
-                      type: "Solutions",
+                      type: "Quiz",
                       subCode: subData.elementAt(index).subCode);
                 },
               ));

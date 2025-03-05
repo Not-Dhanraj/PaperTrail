@@ -27,8 +27,8 @@ class ItemPage extends ConsumerWidget {
           return "mt_paper";
         case "End Term":
           return "et_paper";
-        case "Solutions":
-          return "solutions";
+        case "Quiz":
+          return "quiz";
         default:
           return "mt_paper";
       }
