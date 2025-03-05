@@ -39,6 +39,7 @@ class _PdfViewerPageState extends State<PdfViewerPage> {
           PdfViewer.file(
             widget.path,
             params: PdfViewerParams(
+              panEnabled: true,
               pageOverlaysBuilder: (context, pageRect, page) {
                 return [
                   Align(
@@ -62,28 +63,28 @@ class _PdfViewerPageState extends State<PdfViewerPage> {
                   ),
                 ];
               },
-              layoutPages: (pages, params) {
-                final height =
-                    pages.fold(0.0, (prev, page) => max(prev, page.height)) +
-                        params.margin * 2;
-                final pageLayouts = <Rect>[];
-                double x = params.margin;
-                for (var page in pages) {
-                  pageLayouts.add(
-                    Rect.fromLTWH(
-                      x,
-                      (height - page.height) / 2, // center vertically
-                      page.width,
-                      page.height,
-                    ),
-                  );
-                  x += page.width + params.margin;
-                }
-                return PdfPageLayout(
-                  pageLayouts: pageLayouts,
-                  documentSize: Size(x, height),
-                );
-              },
+              // layoutPages: (pages, params) {
+              //   final height =
+              //       pages.fold(0.0, (prev, page) => max(prev, page.height)) +
+              //           params.margin * 2;
+              //   final pageLayouts = <Rect>[];
+              //   double x = params.margin;
+              //   for (var page in pages) {
+              //     pageLayouts.add(
+              //       Rect.fromLTWH(
+              //         x,
+              //         (height - page.height) / 2, // center vertically
+              //         page.width,
+              //         page.height,
+              //       ),
+              //     );
+              //     x += page.width + params.margin;
+              //   }
+              //   return PdfPageLayout(
+              //     pageLayouts: pageLayouts,
+              //     documentSize: Size(x, height),
+              //   );
+              // },
               backgroundColor: Theme.of(context).dividerColor,
               enableTextSelection: true,
             ),
