@@ -22,7 +22,8 @@ class _ExamsPageState extends ConsumerState<ExamsPage>
     tabController = TabController(length: 3, vsync: this);
     tabController.addListener(() {
       if (tabController.indexIsChanging) {
-        ref.invalidate(searchQueryProvider); // Reset search when tab changes
+        ref.invalidate(
+            filteredSubjectsProvider); // Reset search when tab changes
       }
     });
   }
