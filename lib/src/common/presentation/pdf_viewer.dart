@@ -1,4 +1,3 @@
-import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:pdfrx/pdfrx.dart';
 
@@ -52,7 +51,7 @@ class _PdfViewerPageState extends State<PdfViewerPage> {
                       ),
                       alignment: Alignment.bottomCenter,
                       height: 20,
-                      width: 30,
+                      width: 45,
                       child: Center(
                         child: Text(
                           "${page.pageNumber} / ${page.document.pages.length}",

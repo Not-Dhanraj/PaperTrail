@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:papertrail/src/features/exams/presentation/endt_page.dart';
 import 'package:papertrail/src/features/exams/presentation/midt_page.dart';
 import 'package:papertrail/src/features/exams/solutions/presentation/sol_page.dart';
+import 'package:papertrail/src/features/search/presentation/search_page.dart';
 
 class ExamsPage extends ConsumerStatefulWidget {
   const ExamsPage({super.key});
@@ -17,7 +18,7 @@ class _ExamsPageState extends ConsumerState<ExamsPage>
 
   @override
   void initState() {
-    tabController = TabController(length: 3, vsync: this);
+    tabController = TabController(length: 4, vsync: this);
     super.initState();
   }
 
@@ -55,6 +56,7 @@ class _ExamsPageState extends ConsumerState<ExamsPage>
                   Tab(text: 'Midterms'),
                   Tab(text: 'End Terms'),
                   Tab(text: 'Solutions'),
+                  Tab(text: 'Search'),
                 ],
               ),
               Theme.of(context).scaffoldBackgroundColor),
@@ -88,6 +90,7 @@ class _ExamsPageState extends ConsumerState<ExamsPage>
               MidTermsPage(),
               EndTermPage(),
               SolutionPage(),
+              SearchPage()
             ],
           ),
         ),
