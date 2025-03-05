@@ -10,7 +10,13 @@ class QuizPage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final filteredSubjects = ref.watch(filteredSubjectsProvider('quiz'));
+    var initData = ref.watch(subjectDataProvider);
+    var query = ref.watch(searchQueryProvider).toLowerCase();
+    var subData = initData.where((obj) => obj.quizItms != 0);
+
+    var filteredData = subData.where((subject) =>
+        subject.subName.toLowerCase().contains(query) ||
+        subject.subCode.any((code) => code.toLowerCase().contains(query)));
     return Column(
       children: [
         Padding(
@@ -18,17 +24,15 @@ class QuizPage extends ConsumerWidget {
           child: MoonTextInput(
             hintText: "Search in Quizzes",
             onChanged: (String value) =>
-                ref.read(filteredSubjectsProvider('quiz').notifier).filter(
-                      value,
-                    ),
+                ref.read(searchQueryProvider.notifier).state = value,
             leading: const Icon(MoonIcons.generic_search_24_light),
           ),
         ),
         Expanded(
           child: ListView.builder(
-            itemCount: filteredSubjects.length,
+            itemCount: filteredData.length,
             itemBuilder: (context, index) {
-              var subject = filteredSubjects.elementAt(index);
+              var subject = filteredData.elementAt(index);
               return ListTile(
                 leading: MoonAvatar(
                   backgroundColor: Theme.of(context).dividerColor,

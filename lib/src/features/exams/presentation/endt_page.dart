@@ -10,24 +10,29 @@ class EndTermPage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final filteredSubjects = ref.watch(filteredSubjectsProvider('end'));
+    var initData = ref.watch(subjectDataProvider);
+    var query = ref.watch(searchQueryProvider).toLowerCase();
+    var subData = initData.where((obj) => obj.etItm != 0);
+
+    var filteredData = subData.where((subject) =>
+        subject.subName.toLowerCase().contains(query) ||
+        subject.subCode.any((code) => code.toLowerCase().contains(query)));
     return Column(
       children: [
         Padding(
           padding: const EdgeInsets.only(top: 14, bottom: 0, left: 8, right: 8),
           child: MoonTextInput(
             hintText: "Search in EndTerms",
-            onChanged: (String value) => ref
-                .read(filteredSubjectsProvider('end').notifier)
-                .filter(value),
+            onChanged: (String value) =>
+                ref.read(searchQueryProvider.notifier).state = value,
             leading: const Icon(MoonIcons.generic_search_24_light),
           ),
         ),
         Expanded(
           child: ListView.builder(
-            itemCount: filteredSubjects.length,
+            itemCount: filteredData.length,
             itemBuilder: (context, index) {
-              final subject = filteredSubjects.elementAt(index);
+              final subject = filteredData.elementAt(index);
               return ListTile(
                 leading: MoonAvatar(
                   backgroundColor: Theme.of(context).dividerColor,
