@@ -47,7 +47,7 @@ class MyApp extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     var themeref = ref.watch(themeProvider);
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'PaperTrail',
       themeMode: themeref.currTheme,
       theme: themeref.lightTheme,
       darkTheme: themeref.darkTheme,

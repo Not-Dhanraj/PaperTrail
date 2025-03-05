@@ -1,43 +1,47 @@
+import 'dart:io';
 import 'package:flutter/material.dart';
-import 'package:flutter_cache_manager/flutter_cache_manager.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:mini_pdf_epub_viewer/mini_pdf_epub_viewer.dart';
 import 'package:moon_design/moon_design.dart';
+import 'package:pdfx/pdfx.dart';
 
-class PdfViewerPage extends ConsumerWidget {
+class PdfViewerPage extends StatefulWidget {
   final String name;
-  final String link;
+  final String path;
   const PdfViewerPage({
     super.key,
     required this.name,
-    required this.link,
+    required this.path,
   });
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  State<PdfViewerPage> createState() => _PdfViewerPageState();
+}
+
+class _PdfViewerPageState extends State<PdfViewerPage> {
+  late PdfController controller;
+  @override
+  void initState() {
+    controller = PdfController(
+      document: PdfDocument.openFile(widget.path),
+    );
+    super.initState();
+  }
+
+  void initData() async {
+    controller = PdfController(document: PdfDocument.openFile(widget.path));
+  }
+
+  @override
+  void dispose() {
+    controller.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
     return Scaffold(
       body: Stack(
         children: [
-          FutureBuilder(
-            future: DefaultCacheManager().downloadFile(link),
-            builder: (context, snapshot) {
-              if (snapshot.connectionState == ConnectionState.waiting) {
-                return Center(
-                  child: CircularProgressIndicator(),
-                );
-              } else if (snapshot.data == null) {
-                return Center(
-                  child: Text("Error Fetching File"),
-                );
-              } else {
-                return DocumentViewer(
-                  showThumbnails: false,
-                  source: DocumentSource.file(snapshot.data!.file.path),
-                  type: DocumentType.pdf,
-                );
-              }
-            },
-          ),
+          PdfView(controller: controller),
           Positioned(
             right: 20,
             left: 20,
@@ -45,10 +49,6 @@ class PdfViewerPage extends ConsumerWidget {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                MoonButton.icon(
-                  backgroundColor: Theme.of(context).dividerColor,
-                  icon: Icon(MoonIcons.generic_download_24_regular),
-                ),
                 SizedBox(
                   width: 10,
                 ),
@@ -62,6 +62,25 @@ class PdfViewerPage extends ConsumerWidget {
           ),
         ],
       ),
+    );
+  }
+
+  PhotoViewGalleryPageOptions _pageBuilder(
+    BuildContext context,
+    Future<PdfPageImage> pageImage,
+    int index,
+    PdfDocument document,
+  ) {
+    return PhotoViewGalleryPageOptions(
+      imageProvider: PdfPageImageProvider(
+        pageImage,
+        index,
+        document.id,
+      ),
+      minScale: PhotoViewComputedScale.contained * 1,
+      maxScale: PhotoViewComputedScale.contained * 2,
+      initialScale: PhotoViewComputedScale.contained * 1.0,
+      heroAttributes: PhotoViewHeroAttributes(tag: '${document.id}-$index'),
     );
   }
 }

@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:moon_design/moon_design.dart';
 import 'package:papertrail/src/common/domain/items_info.dart';
 import 'package:papertrail/src/common/presentation/pdf_viewer.dart';
+import 'package:papertrail/src/common/services/downloader_service.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 class ItemPage extends ConsumerWidget {
@@ -82,6 +83,7 @@ class ItemPage extends ConsumerWidget {
                     return ListView.builder(
                       itemCount: data.length,
                       itemBuilder: (context, index) {
+                        var name = data.elementAt(index).fName;
                         return Padding(
                           padding: const EdgeInsets.symmetric(
                               horizontal: 8, vertical: 4),
@@ -100,13 +102,10 @@ class ItemPage extends ConsumerWidget {
                               content: Icon(MoonIcons.files_add_24_regular),
                             ),
                             title: Text(
-                              data.elementAt(index).fName,
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .bodyLarge
-                                  ?.copyWith(fontWeight: FontWeight.bold),
+                              name[0].toUpperCase() +
+                                  name.substring(1).toLowerCase(),
                             ),
-                            subtitle: Text("Subject Code: $subCode"),
+                            // subtitle: Text("Subject Code: $subCode"),
                             trailing: MoonButton(
                               height: 35,
                               backgroundColor: Theme.of(context)
@@ -115,13 +114,13 @@ class ItemPage extends ConsumerWidget {
                                   .withValues(alpha: 0.5),
                               label: Text('View'),
                               onTap: () {
-                                Navigator.of(context).push(MaterialPageRoute(
-                                  builder: (context) {
-                                    return PdfViewerPage(
-                                        name: data.elementAt(index).fName,
-                                        link: data.elementAt(index).fLink);
-                                  },
-                                ));
+                                ref
+                                    .read(downloadProvider)
+                                    .downloadFileAndNavigate(
+                                      context,
+                                      data.elementAt(index).fLink,
+                                      data.elementAt(index).fName,
+                                    );
                               },
                             ),
                           ),

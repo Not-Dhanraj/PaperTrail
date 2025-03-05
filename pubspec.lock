@@ -408,14 +408,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.0.0"
-  mini_pdf_epub_viewer:
-    dependency: "direct main"
-    description:
-      name: mini_pdf_epub_viewer
-      sha256: a74087aeed1e03e32a014396a432d56986e76e14d1d934c8d12f0f0447115981
-      url: "https://pub.dev"
-    source: hosted
-    version: "0.1.2"
   moon_design:
     dependency: "direct main"
     description:
@@ -449,7 +441,7 @@ packages:
     source: hosted
     version: "1.9.0"
   path_provider:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: path_provider
       sha256: "50c5dd5b6e1aaf6fb3a78b33f6aa3afca52bf903a8a5298f53101fdaee55bbcd"
@@ -497,7 +489,7 @@ packages:
     source: hosted
     version: "2.3.0"
   pdfx:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: pdfx
       sha256: cbbd7bf54d6f37524df85d06a816fa095d124cd32d42909effddc0027f9db10b
