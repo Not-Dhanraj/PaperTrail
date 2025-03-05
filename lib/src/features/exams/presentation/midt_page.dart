@@ -27,11 +27,6 @@ class MidTermsPage extends ConsumerWidget {
             onChanged: (String value) =>
                 ref.read(searchQueryProvider.notifier).state = value,
             leading: const Icon(MoonIcons.generic_search_24_light),
-            trailing: MoonButton.icon(
-              buttonSize: MoonButtonSize.xs,
-              hoverEffectColor: Colors.transparent,
-              icon: const Icon(MoonIcons.controls_close_16_light),
-            ),
           ),
         ),
         Expanded(
