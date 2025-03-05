@@ -1,5 +1,5 @@
 name: papertrail
-description: "Notes. Papers. Solutions. Sorted!"
+description: "Notes. Papers. Quizzes. Sorted!"
 # The following line prevents the package from being accidentally published to
 # pub.dev using `flutter pub publish`. This is preferred for private packages.
 publish_to: 'none' # Remove this line if you wish to publish to pub.dev
@@ -58,7 +58,7 @@ dev_dependencies:
 #     package_name: "dev.paradox.papertrail"
 #   web:
 #     app_name: "PaperTrail"
-#     description: "Notes. Papers. Solutions. Sorted!"
+#     description: "Notes. Papers. Quizzes. Sorted!"
 #   windows:
 #     app_name: "PaperTrail"
 #     organization: "Paradox Studios"

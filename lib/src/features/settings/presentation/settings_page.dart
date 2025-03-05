@@ -44,7 +44,7 @@ class SettingsPage extends ConsumerWidget {
             Constants().appName,
             style: Theme.of(context).textTheme.headlineMedium,
           ),
-          Text('Notes. Papers. Solutions. Sorted!'),
+          Text('Notes. Papers. Quizzes. Sorted!'),
           Padding(
             padding: EdgeInsets.all(8),
           ),
