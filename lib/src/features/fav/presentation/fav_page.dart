@@ -13,114 +13,124 @@ class FavoritesPage extends ConsumerWidget {
     final favoriteIds = ref.watch(favoritesProvider);
     final favoriteSubjects =
         subjects.where((sub) => favoriteIds.contains(sub.id)).toList();
-    var top = 0.0;
     return Scaffold(
       body: CustomScrollView(
         slivers: [
-          // SliverToBoxAdapter(
-          //   child: Container(
-          //     padding: EdgeInsets.only(top: 30, left: 15, bottom: 5),
-          //     child: Text(
-          //       "Bookmarks",
-          //       style: Theme.of(context).textTheme.displaySmall?.copyWith(),
-          //     ),
-          //   ),
-          // ),
-          // SliverAppBar(
-          //   expandedHeight: 200.0,
-          //   floating: false,
-          //   pinned: true,
-          //   backgroundColor: Theme.of(context).scaffoldBackgroundColor,
-          //   flexibleSpace: FlexibleSpaceBar(
-          //     titlePadding: EdgeInsets.only(left: 16, bottom: 16),
-          //     title: Column(
-          //       mainAxisAlignment: MainAxisAlignment.end,
-          //       crossAxisAlignment: CrossAxisAlignment.start,
-          //       children: [
-          //         Text(
-          //           "Bookmarks",
-          //           style: TextStyle(
-          //               fontSize: 24,
-          //               fontWeight: FontWeight.bold,
-          //               color: Colors.white),
-          //         ),
-          //         Text(
-          //           "Your saved subjects",
-          //           style: TextStyle(fontSize: 14, color: Colors.white70),
-          //         ),
-          //       ],
-          //     ),
-          //   ),
-          // ),
           SliverAppBar(
-              expandedHeight: 200.0,
-              floating: false,
-              pinned: true,
-              flexibleSpace: LayoutBuilder(
-                  builder: (BuildContext context, BoxConstraints constraints) {
-                // print('constraints=' + constraints.toString());
+            expandedHeight: 220.0,
+            floating: false,
+            pinned: true,
+            backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+            flexibleSpace: LayoutBuilder(
+              builder: (context, constraints) {
+                double percentage = (constraints.maxHeight - kToolbarHeight) /
+                    (220 - kToolbarHeight);
+                bool isCollapsed = percentage < 0.4; // Adjust threshold
+
                 return FlexibleSpaceBar(
-                    centerTitle: true,
-                    title: AnimatedOpacity(
-                        duration: Duration(milliseconds: 300),
-                        //opacity: top == MediaQuery.of(context).padding.top + kToolbarHeight ? 1.0 : 0.0,
-                        opacity: 1.0,
-                        child: Text(
-                          top.toString(),
-                          style: TextStyle(fontSize: 12.0),
-                        )),
-                    background: Image.network(
-                      "https://images.unsplash.com/photo-1542601098-3adb3baeb1ec?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=5bb9a9747954cdd6eabe54e3688a407e&auto=format&fit=crop&w=500&q=60",
-                      fit: BoxFit.cover,
-                    ));
-              })),
+                  titlePadding: EdgeInsets.only(
+                    left: isCollapsed ? 56 : 16, // Shift right when collapsed
+                    bottom: 16,
+                  ),
+                  title: isCollapsed
+                      ? Text(
+                          "Bookmarks",
+                        )
+                      : null, // Hide title when expanded
+                  background: Padding(
+                    padding: EdgeInsets.only(left: 16, bottom: 20),
+                    child: Align(
+                      alignment: Alignment.bottomLeft,
+                      child: AnimatedOpacity(
+                        opacity: percentage.clamp(0.0, 1.0),
+                        duration: Duration(milliseconds: 200),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              "Bookmarks",
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .displaySmall
+                                  ?.copyWith(fontWeight: FontWeight.bold),
+                            ),
+                            Text("Your saved subjects",
+                                style: Theme.of(context).textTheme.bodyLarge),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
+                );
+              },
+            ),
+          ),
           SliverList.builder(
             itemCount: favoriteSubjects.length,
             itemBuilder: (context, index) {
               final subject = favoriteSubjects[index];
 
               return Card(
-                margin: EdgeInsets.all(8.0),
+                margin: EdgeInsets.symmetric(horizontal: 8, vertical: 4),
                 child: ListTile(
                   title: Text(subject.subName,
                       style: TextStyle(fontWeight: FontWeight.bold)),
                   subtitle: Column(
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
-                      Text("Code: ${subject.subCode.join(", ")}"),
-                      Column(
-                        mainAxisSize: MainAxisSize.min,
+                      Align(
+                          alignment: Alignment.centerLeft,
+                          child: Text("Code: ${subject.subCode.join(", ")}")),
+                      SizedBox(
+                        height: 5,
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
                           if (subject.quizItms > 0)
-                            TextButton(
-                              onPressed: () {
+                            MoonButton(
+                              height: 35,
+                              backgroundColor: Theme.of(context)
+                                  .dividerColor
+                                  .withValues(alpha: 0.5),
+                              onTap: () {
                                 // Handle quiz action
                               },
-                              child: Text("Quiz"),
+                              label: Text("Quiz"),
                             ),
-                          SizedBox(
-                            height: 50,
-                          ),
                           if (subject.mtItm > 0)
-                            TextButton(
-                              onPressed: () {
+                            MoonButton(
+                              height: 35,
+                              backgroundColor: Theme.of(context)
+                                  .dividerColor
+                                  .withValues(alpha: 0.5),
+                              onTap: () {
                                 // Handle midterm action
                               },
-                              child: Text("Midterm"),
+                              label: Text("Midterm"),
                             ),
                           if (subject.etItm > 0)
-                            TextButton(
-                              onPressed: () {
+                            MoonButton(
+                              height: 35,
+                              backgroundColor: Theme.of(context)
+                                  .dividerColor
+                                  .withValues(alpha: 0.5),
+                              onTap: () {
                                 // Handle endterm action
                               },
-                              child: Text("Endterm"),
+                              label: Text("Endterm"),
                             ),
                           if (subject.ntItm > 0)
-                            TextButton(
-                              onPressed: () {
+                            MoonButton(
+                              height: 35,
+                              backgroundColor: Theme.of(context)
+                                  .dividerColor
+                                  .withValues(alpha: 0.5),
+                              onTap: () {
                                 // Handle notes action
                               },
-                              child: Text("Notes"),
+                              label: Text("Notes"),
                             ),
                         ],
                       ),
