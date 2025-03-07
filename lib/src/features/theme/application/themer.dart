@@ -20,7 +20,7 @@ class FlexThemeProvider extends Notifier<ThemeModel> {
   }
 
   ThemeData lightTheme = FlexThemeData.light(
-    scheme: FlexScheme.aquaBlue,
+    scheme: FlexScheme.indigoM3,
     extensions: <ThemeExtension<dynamic>>[
       MoonTheme(tokens: MoonTokens.light),
     ],
@@ -51,7 +51,7 @@ class FlexThemeProvider extends Notifier<ThemeModel> {
   );
 
   ThemeData darkTheme = FlexThemeData.dark(
-    scheme: FlexScheme.aquaBlue,
+    scheme: FlexScheme.indigoM3,
     extensions: <ThemeExtension<dynamic>>[
       MoonTheme(tokens: MoonTokens.dark),
     ],

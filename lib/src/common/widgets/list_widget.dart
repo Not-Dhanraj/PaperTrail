@@ -18,14 +18,22 @@ class ListWidget extends ConsumerWidget {
       padding: const EdgeInsets.symmetric(horizontal: 8),
       child: Card(
         child: ListTile(
-          leading: MoonButton.icon(
-            backgroundColor: isFav ? Colors.redAccent[400] : null,
-            icon: Icon(
-              MoonIcons.generic_bookmark_24_regular,
+          leading: AnimatedContainer(
+            decoration: BoxDecoration(
+                color: isFav
+                    ? Colors.redAccent[400]
+                    : Theme.of(context).dividerColor.withValues(alpha: 0.5),
+                borderRadius: BorderRadius.circular(10)),
+            duration: Duration(milliseconds: 300),
+            child: MoonButton.icon(
+              backgroundColor: Colors.transparent,
+              icon: Icon(
+                MoonIcons.generic_bookmark_24_regular,
+              ),
+              onTap: () {
+                ref.read(favoritesProvider.notifier).toggleFavorite(sub.id);
+              },
             ),
-            onTap: () {
-              ref.read(favoritesProvider.notifier).toggleFavorite(sub.id);
-            },
           ),
           title: Text(
             sub.subName,
