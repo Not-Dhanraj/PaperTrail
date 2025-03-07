@@ -17,7 +17,7 @@ class PageviewWidget extends ConsumerWidget {
       itemBuilder: (context, index) {
         return Entry.scale(
           scale: 0.96,
-          duration: Duration(milliseconds: 300),
+          duration: Duration(milliseconds: 250),
           child: Entry.offset(
               yOffset: 25,
               duration: Duration(milliseconds: 300),
