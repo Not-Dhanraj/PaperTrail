@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:papertrail/src/common/widgets/sliver_appbar.dart';
 import 'package:papertrail/src/features/exams/Quiz/presentation/quiz_page.dart';
 import 'package:papertrail/src/features/exams/presentation/endt_page.dart';
 import 'package:papertrail/src/features/exams/presentation/midt_page.dart';
@@ -37,17 +38,11 @@ class _ExamsPageState extends ConsumerState<ExamsPage>
   Widget build(BuildContext context) {
     return CustomScrollView(
       slivers: [
-        SliverToBoxAdapter(
-          child: Container(
-            padding: EdgeInsets.only(top: 30, left: 15, bottom: 10),
-            child: Text(
-              "Midterm, Endterm & Quiz Questions",
-              style: Theme.of(context)
-                  .textTheme
-                  .headlineLarge
-                  ?.copyWith(fontWeight: FontWeight.bold),
-            ),
-          ),
+        SliverAppBarWidget(
+          title: 'PYQ\'s',
+          punch: 'Get Midtern, Endterm and Quizzes question papers',
+          expHeight: 170,
+          paddreq: false,
         ),
         SliverPersistentHeader(
           pinned: true,
@@ -65,28 +60,6 @@ class _ExamsPageState extends ConsumerState<ExamsPage>
               ),
               Theme.of(context).scaffoldBackgroundColor),
         ),
-        // SliverToBoxAdapter(
-        //   child: Padding(
-        //     padding: const EdgeInsets.only(top: 8, bottom: 5),
-        //     child: SizedBox(
-        //       height: 50,
-        //       child: ListView.builder(
-        //         itemCount: 10,
-        //         scrollDirection: Axis.horizontal,
-        //         itemBuilder: (context, index) {
-        //           return Padding(
-        //             padding:
-        //                 const EdgeInsets.symmetric(horizontal: 8, vertical: 5),
-        //             child: ChoiceChip(
-        //               label: Text('data'),
-        //               selected: false,
-        //             ),
-        //           );
-        //         },
-        //       ),
-        //     ),
-        //   ),
-        // ),
         SliverFillRemaining(
           child: TabBarView(
             controller: tabController,

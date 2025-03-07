@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:moon_design/moon_design.dart';
 import 'package:papertrail/src/common/data/sub_data.dart';
 import 'package:papertrail/src/common/widgets/list_widget.dart';
+import 'package:papertrail/src/common/widgets/sliver_appbar.dart';
 import 'package:papertrail/src/features/search/services/search_service.dart';
 
 class NotesPage extends ConsumerWidget {
@@ -18,17 +19,11 @@ class NotesPage extends ConsumerWidget {
         subject.subCode.any((code) => code.toLowerCase().contains(query)));
     return CustomScrollView(
       slivers: [
-        SliverToBoxAdapter(
-          child: Container(
-            padding: EdgeInsets.only(top: 30, left: 15, bottom: 5),
-            child: Text(
-              "Notes",
-              style: Theme.of(context)
-                  .textTheme
-                  .displaySmall
-                  ?.copyWith(fontWeight: FontWeight.bold),
-            ),
-          ),
+        SliverAppBarWidget(
+          title: 'Notes',
+          punch: 'Get your study material.',
+          paddreq: false,
+          expHeight: 170,
         ),
         SliverToBoxAdapter(
           child: Padding(

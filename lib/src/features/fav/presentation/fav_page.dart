@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:moon_design/moon_design.dart';
 import 'package:papertrail/src/common/data/sub_data.dart';
+import 'package:papertrail/src/common/widgets/sliver_appbar.dart';
 import 'package:papertrail/src/features/fav/services/fav_provider.dart';
 
 class FavoritesPage extends ConsumerWidget {
@@ -16,56 +17,7 @@ class FavoritesPage extends ConsumerWidget {
     return Scaffold(
       body: CustomScrollView(
         slivers: [
-          SliverAppBar(
-            expandedHeight: 220.0,
-            floating: false,
-            pinned: true,
-            backgroundColor: Theme.of(context).scaffoldBackgroundColor,
-            flexibleSpace: LayoutBuilder(
-              builder: (context, constraints) {
-                double percentage = (constraints.maxHeight - kToolbarHeight) /
-                    (220 - kToolbarHeight);
-                bool isCollapsed = percentage < 0.4; // Adjust threshold
-
-                return FlexibleSpaceBar(
-                  titlePadding: EdgeInsets.only(
-                    left: isCollapsed ? 56 : 16, // Shift right when collapsed
-                    bottom: 16,
-                  ),
-                  title: isCollapsed
-                      ? Text(
-                          "Bookmarks",
-                        )
-                      : null, // Hide title when expanded
-                  background: Padding(
-                    padding: EdgeInsets.only(left: 16, bottom: 20),
-                    child: Align(
-                      alignment: Alignment.bottomLeft,
-                      child: AnimatedOpacity(
-                        opacity: percentage.clamp(0.0, 1.0),
-                        duration: Duration(milliseconds: 200),
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.end,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              "Bookmarks",
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .displaySmall
-                                  ?.copyWith(fontWeight: FontWeight.bold),
-                            ),
-                            Text("Your saved subjects",
-                                style: Theme.of(context).textTheme.bodyLarge),
-                          ],
-                        ),
-                      ),
-                    ),
-                  ),
-                );
-              },
-            ),
-          ),
+          SliverAppBarWidget(title: 'Bookmarks', punch: 'Your saved subjects'),
           SliverList.builder(
             itemCount: favoriteSubjects.length,
             itemBuilder: (context, index) {
@@ -85,54 +37,71 @@ class FavoritesPage extends ConsumerWidget {
                       SizedBox(
                         height: 5,
                       ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: [
-                          if (subject.quizItms > 0)
-                            MoonButton(
-                              height: 35,
-                              backgroundColor: Theme.of(context)
-                                  .dividerColor
-                                  .withValues(alpha: 0.5),
-                              onTap: () {
-                                // Handle quiz action
-                              },
-                              label: Text("Quiz"),
+                      SingleChildScrollView(
+                        scrollDirection: Axis.horizontal,
+                        physics: ScrollPhysics(),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            if (subject.quizItms > 0)
+                              MoonButton(
+                                padding: EdgeInsets.symmetric(horizontal: 8),
+                                height: 35,
+                                backgroundColor: Theme.of(context)
+                                    .dividerColor
+                                    .withValues(alpha: 0.5),
+                                onTap: () {
+                                  // Handle quiz action
+                                },
+                                label: Text("Quiz"),
+                              ),
+                            SizedBox(
+                              width: 5,
                             ),
-                          if (subject.mtItm > 0)
-                            MoonButton(
-                              height: 35,
-                              backgroundColor: Theme.of(context)
-                                  .dividerColor
-                                  .withValues(alpha: 0.5),
-                              onTap: () {
-                                // Handle midterm action
-                              },
-                              label: Text("Midterm"),
+                            if (subject.mtItm > 0)
+                              MoonButton(
+                                padding: EdgeInsets.symmetric(horizontal: 8),
+                                height: 35,
+                                backgroundColor: Theme.of(context)
+                                    .dividerColor
+                                    .withValues(alpha: 0.5),
+                                onTap: () {
+                                  // Handle midterm action
+                                },
+                                label: Text("Midterm"),
+                              ),
+                            SizedBox(
+                              width: 5,
                             ),
-                          if (subject.etItm > 0)
-                            MoonButton(
-                              height: 35,
-                              backgroundColor: Theme.of(context)
-                                  .dividerColor
-                                  .withValues(alpha: 0.5),
-                              onTap: () {
-                                // Handle endterm action
-                              },
-                              label: Text("Endterm"),
+                            if (subject.etItm > 0)
+                              MoonButton(
+                                padding: EdgeInsets.symmetric(horizontal: 8),
+                                height: 35,
+                                backgroundColor: Theme.of(context)
+                                    .dividerColor
+                                    .withValues(alpha: 0.5),
+                                onTap: () {
+                                  // Handle endterm action
+                                },
+                                label: Text("Endterm"),
+                              ),
+                            SizedBox(
+                              width: 5,
                             ),
-                          if (subject.ntItm > 0)
-                            MoonButton(
-                              height: 35,
-                              backgroundColor: Theme.of(context)
-                                  .dividerColor
-                                  .withValues(alpha: 0.5),
-                              onTap: () {
-                                // Handle notes action
-                              },
-                              label: Text("Notes"),
-                            ),
-                        ],
+                            if (subject.ntItm > 0)
+                              MoonButton(
+                                padding: EdgeInsets.symmetric(horizontal: 8),
+                                height: 35,
+                                backgroundColor: Theme.of(context)
+                                    .dividerColor
+                                    .withValues(alpha: 0.5),
+                                onTap: () {
+                                  // Handle notes action
+                                },
+                                label: Text("Notes"),
+                              ),
+                          ],
+                        ),
                       ),
                     ],
                   ),

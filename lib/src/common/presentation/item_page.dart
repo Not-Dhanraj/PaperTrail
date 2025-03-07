@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:moon_design/moon_design.dart';
 import 'package:papertrail/src/common/domain/items_info.dart';
 import 'package:papertrail/src/common/services/downloader_service.dart';
+import 'package:papertrail/src/common/widgets/sliver_appbar.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 class ItemPage extends ConsumerWidget {
@@ -55,17 +56,10 @@ class ItemPage extends ConsumerWidget {
       ),
       body: CustomScrollView(
         slivers: [
-          SliverToBoxAdapter(
-            child: Container(
-              padding: EdgeInsets.only(top: 30, left: 15, bottom: 15),
-              child: Text(
-                type,
-                style: Theme.of(context)
-                    .textTheme
-                    .displaySmall
-                    ?.copyWith(fontWeight: FontWeight.bold),
-              ),
-            ),
+          SliverAppBarWidget(
+            title: type,
+            punch: 'Explore ${subCode.join(', ')}',
+            expHeight: 200,
           ),
           SliverFillRemaining(
             child: FutureBuilder<List<ItemsInfo>>(
@@ -134,11 +128,6 @@ class ItemPage extends ConsumerWidget {
           ),
         ],
       ),
-      floatingActionButton: FloatingActionButton(
-          child: Icon(MoonIcons.arrows_left_24_regular),
-          onPressed: () {
-            Navigator.of(context).pop();
-          }),
     );
   }
 }
