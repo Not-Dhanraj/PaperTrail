@@ -1,22 +1,31 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:moon_design/moon_design.dart';
 import 'package:papertrail/src/common/domain/sub_items.dart';
 import 'package:papertrail/src/common/presentation/item_page.dart';
+import 'package:papertrail/src/features/fav/services/fav_provider.dart';
 
-class ListWidget extends StatelessWidget {
+class ListWidget extends ConsumerWidget {
   final SubjectItems sub;
   final String type;
   const ListWidget({super.key, required this.sub, required this.type});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final favoriteIds = ref.watch(favoritesProvider);
+    final isFav = favoriteIds.contains(sub.id);
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 8),
       child: Card(
         child: ListTile(
-          leading: MoonAvatar(
-            backgroundColor: Theme.of(context).dividerColor,
-            content: Icon(MoonIcons.files_add_24_regular),
+          leading: MoonButton.icon(
+            backgroundColor: isFav ? Colors.redAccent[400] : null,
+            icon: Icon(
+              MoonIcons.generic_bookmark_24_regular,
+            ),
+            onTap: () {
+              ref.read(favoritesProvider.notifier).toggleFavorite(sub.id);
+            },
           ),
           title: Text(
             sub.subName,

@@ -3,6 +3,7 @@ import 'package:flutter_email_sender/flutter_email_sender.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:moon_design/moon_design.dart';
 import 'package:papertrail/src/common/data/const.dart';
+import 'package:papertrail/src/features/fav/presentation/fav_page.dart';
 import 'package:papertrail/src/features/theme/application/themer.dart';
 
 class SettingsPage extends ConsumerWidget {
@@ -47,6 +48,34 @@ class SettingsPage extends ConsumerWidget {
           Text('Notes. Papers. Quizzes. Sorted!'),
           Padding(
             padding: EdgeInsets.all(8),
+          ),
+          Align(
+            alignment: Alignment.centerLeft,
+            child: Padding(
+              padding: const EdgeInsets.only(left: 10, top: 10, bottom: 3),
+              child: Text(
+                'Favorites',
+                style: Theme.of(context)
+                    .textTheme
+                    .bodyLarge
+                    ?.copyWith(fontWeight: FontWeight.bold),
+              ),
+            ),
+          ),
+          ListTile(
+            leading: Icon(MoonIcons.generic_bookmark_alternative_24_regular),
+            title: Text('Bookmarks'),
+            subtitle: Text('Access your Bookmarks'),
+            trailing: Icon(MoonIcons.arrows_right_24_regular),
+            onTap: () {
+              Navigator.of(context).push(
+                MaterialPageRoute(
+                  builder: (context) {
+                    return FavoritesPage();
+                  },
+                ),
+              );
+            },
           ),
           Align(
             alignment: Alignment.centerLeft,

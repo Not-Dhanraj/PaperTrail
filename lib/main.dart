@@ -1,22 +1,38 @@
 import 'dart:io';
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_displaymode/flutter_displaymode.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:hive_ce_flutter/hive_flutter.dart';
 import 'package:papertrail/const.dart';
 import 'package:papertrail/src/common/presentation/splash_page.dart';
 import 'package:papertrail/src/features/theme/application/themer.dart';
+import 'package:path_provider/path_provider.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   Platform.isAndroid ? await _initDisplayMode() : null;
+  await _initHive();
   await Supabase.initialize(
     url: supUrl,
     anonKey: annonKey,
   );
   runApp(ProviderScope(child: const MyApp()));
+}
+
+Future<void> _initHive() async {
+  if (!kIsWeb) {
+    var docDir = await getApplicationDocumentsDirectory();
+    Hive.init(docDir.path);
+  }
+
+  var favBox = await Hive.openBox('favorites');
+  if (favBox.get('favorites') == null) {
+    favBox.put('favorites', List<dynamic>.empty(growable: true));
+  }
 }
 
 Future<void> _initDisplayMode() async {
