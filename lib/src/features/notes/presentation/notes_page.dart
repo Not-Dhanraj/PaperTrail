@@ -24,6 +24,8 @@ class NotesPage extends ConsumerWidget {
           punch: 'Get your study material.',
           paddreq: false,
           expHeight: 170,
+          bpadding: 5,
+          tintColor: Theme.of(context).scaffoldBackgroundColor,
         ),
         SliverToBoxAdapter(
           child: Padding(

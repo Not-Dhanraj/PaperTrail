@@ -4,18 +4,22 @@ class SliverAppBarWidget extends StatelessWidget {
   final String title;
   final String punch;
   final int expHeight;
+  final Color tintColor;
   final bool paddreq;
+  final int bpadding;
   const SliverAppBarWidget(
       {super.key,
       required this.title,
       required this.punch,
+      required this.tintColor,
       this.expHeight = 210,
+      this.bpadding = 20,
       this.paddreq = true});
 
   @override
   Widget build(BuildContext context) {
     return SliverAppBar(
-      surfaceTintColor: Theme.of(context).scaffoldBackgroundColor,
+      surfaceTintColor: tintColor,
       expandedHeight: expHeight.toDouble(),
       floating: false,
       pinned: true,
@@ -39,7 +43,7 @@ class SliverAppBarWidget extends StatelessWidget {
                   )
                 : null, // Hide title when expanded
             background: Padding(
-              padding: EdgeInsets.only(left: 16, bottom: 20),
+              padding: EdgeInsets.only(left: 16, bottom: bpadding.toDouble()),
               child: Align(
                 alignment: Alignment.bottomLeft,
                 child: AnimatedOpacity(

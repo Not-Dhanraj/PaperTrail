@@ -31,7 +31,7 @@ class BottomNav extends ConsumerWidget {
       selectedIndex: pgViewService.currentindex,
       showElevation: true,
       animationCurve: Sprung.underDamped,
-      animationDuration: Duration(milliseconds: 250),
+      animationDuration: Duration(milliseconds: 350),
       onItemSelected: (index) {
         ref.watch(pageViewService.notifier).updateIndex(index);
       },

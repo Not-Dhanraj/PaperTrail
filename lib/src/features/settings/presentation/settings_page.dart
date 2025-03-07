@@ -3,6 +3,7 @@ import 'package:flutter_email_sender/flutter_email_sender.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:moon_design/moon_design.dart';
 import 'package:papertrail/src/common/data/const.dart';
+import 'package:papertrail/src/common/widgets/sliver_appbar.dart';
 import 'package:papertrail/src/features/fav/presentation/fav_page.dart';
 import 'package:papertrail/src/features/theme/application/themer.dart';
 
@@ -13,279 +14,207 @@ class SettingsPage extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     var themer = ref.watch(themeProvider.notifier);
 
-    return SingleChildScrollView(
-      child: Column(
-        children: [
-          Align(
-            alignment: Alignment.centerLeft,
-            child: Container(
-              padding: EdgeInsets.only(top: 30, left: 15, bottom: 5),
-              child: Text(
-                "Settings & Info",
-                style: Theme.of(context)
-                    .textTheme
-                    .headlineLarge
-                    ?.copyWith(fontWeight: FontWeight.bold),
-              ),
-            ),
-          ),
-          Padding(padding: EdgeInsets.only(top: 30)),
-          Card(
-            child: SizedBox(
-              height: 120,
-              width: 120,
-              child: Image.asset(
-                  fit: BoxFit.cover, height: 120, 'assets/icon/icon.png'),
-            ),
-          ),
-          Padding(
-            padding: EdgeInsets.all(8),
-          ),
-          Text(
-            Constants().appName,
-            style: Theme.of(context).textTheme.headlineMedium,
-          ),
-          Text('Notes. Papers. Quizzes. Sorted!'),
-          Padding(
-            padding: EdgeInsets.all(8),
-          ),
-          Align(
-            alignment: Alignment.centerLeft,
-            child: Padding(
-              padding: const EdgeInsets.only(left: 10, top: 10, bottom: 3),
-              child: Text(
-                'Favorites',
-                style: Theme.of(context)
-                    .textTheme
-                    .bodyLarge
-                    ?.copyWith(fontWeight: FontWeight.bold),
-              ),
-            ),
-          ),
-          ListTile(
-            leading: Icon(MoonIcons.generic_bookmark_alternative_24_regular),
-            title: Text('Bookmarks'),
-            subtitle: Text('Access your Bookmarks'),
-            trailing: Icon(MoonIcons.arrows_right_24_regular),
-            onTap: () {
-              Navigator.of(context).push(
-                MaterialPageRoute(
-                  builder: (context) {
-                    return FavoritesPage();
-                  },
-                ),
-              );
-            },
-          ),
-          Align(
-            alignment: Alignment.centerLeft,
-            child: Padding(
-              padding: const EdgeInsets.only(left: 10, top: 10, bottom: 3),
-              child: Text(
-                'Theme',
-                style: Theme.of(context)
-                    .textTheme
-                    .bodyLarge
-                    ?.copyWith(fontWeight: FontWeight.bold),
-              ),
-            ),
-          ),
-          ListTile(
-            leading: Icon(MoonIcons.text_size_16_light),
-            title: Text('Theme Mode'),
-            subtitle: Text('Select Theme Mode'),
-            trailing: MoonSwitch(
-              value: Theme.of(context).brightness == Brightness.light,
-              activeThumbWidget: Icon(MoonIcons.other_sun_24_regular),
-              inactiveThumbWidget: Icon(MoonIcons.other_moon_24_regular),
-              onChanged: (value) {
-                if (Theme.of(context).brightness == Brightness.dark) {
-                  themer.switchMode(ThemeMode.light);
-                } else {
-                  themer.switchMode(ThemeMode.dark);
-                }
-              },
-            ),
-          ),
-          Align(
-            alignment: Alignment.centerLeft,
-            child: Padding(
-              padding: const EdgeInsets.only(left: 10, top: 10, bottom: 3),
-              child: Text(
-                'Help and Feeback',
-                style: Theme.of(context)
-                    .textTheme
-                    .bodyLarge
-                    ?.copyWith(fontWeight: FontWeight.bold),
-              ),
-            ),
-          ),
-          ListTile(
-            leading: Icon(MoonIcons.mail_box_24_regular),
-            title: Text('Submit Notes or Papers'),
-            subtitle:
-                Text('Help us add more content so others can easily find it'),
-            trailing: Icon(MoonIcons.arrows_right_24_regular),
-            onTap: () async {
-              final Email email = Email(
-                body: '',
-                subject: 'Sending new content to add in app',
-                recipients: ['paradoxstudios91@gmail.com'],
-                isHTML: false,
-              );
-
-              await FlutterEmailSender.send(email);
-            },
-          ),
-          ListTile(
-            leading: Icon(MoonIcons.mail_envelope_24_regular),
-            title: Text('Contact us!'),
-            subtitle: Text('Reach out to use in case of any issues'),
-            trailing: Icon(MoonIcons.arrows_right_24_regular),
-            onTap: () async {
-              final Email email = Email(
-                body: '',
-                subject: 'Help regarding app',
-                recipients: ['paradoxstudios91@gmail.com'],
-                isHTML: false,
-              );
-
-              await FlutterEmailSender.send(email);
-            },
-          ),
-          // ListTile(
-          //   leading: Icon(MoonIcons.text_size_16_light),
-          //   title: Text('Terms of Service'),
-          //   subtitle: Text('Read Terms of Service'),
-          //   trailing: Icon(MoonIcons.arrows_boost_24_regular),
-          //   onTap: () {},
-          // ),
-          Align(
-            alignment: Alignment.centerLeft,
-            child: Padding(
-              padding: const EdgeInsets.only(left: 10, top: 10, bottom: 3),
-              child: Text(
-                'Legal',
-                style: Theme.of(context)
-                    .textTheme
-                    .bodyLarge
-                    ?.copyWith(fontWeight: FontWeight.bold),
-              ),
-            ),
-          ),
-          ListTile(
-            leading: Icon(MoonIcons.generic_info_alternative_24_regular),
-            title: Text('Disclaimer'),
-            subtitle: Text('See Disclaimer'),
-            trailing: Icon(MoonIcons.arrows_right_24_regular),
-            onTap: () {
-              showMoonModal<void>(
-                context: context,
-                builder: (BuildContext context) {
-                  return Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 32),
-                    child: MoonModal(
-                      child: IntrinsicHeight(
-                        child: Material(
-                          type: MaterialType.transparency,
-                          child: Padding(
-                            padding: const EdgeInsets.all(15.0),
-                            child: Column(
-                              children: [
-                                Icon(
-                                  MoonIcons.generic_about_24_regular,
-                                  size: 30,
-                                ),
-                                // Text(
-                                //   "Disclaimer",
-                                //   style: Theme.of(context)
-                                //       .textTheme
-                                //       .bodyLarge!
-                                //       .copyWith(fontWeight: FontWeight.bold),
-                                // ),
-                                Divider(),
-
-                                SizedBox(
-                                  height: 8,
-                                ),
-                                Text(
-                                    "All the content which are present in the app are for personal use only! Please do not repost the things downloaded from here to other platforms."),
-                                Center(
-                                  child: MoonButton(
-                                    label: Text('Okay'),
-                                    onTap: () {
-                                      Navigator.of(context).pop();
-                                    },
+    return CustomScrollView(
+      slivers: [
+        // SliverAppBar(
+        //   floating: true,
+        //   pinned: true,
+        //   expandedHeight: 150,
+        //   flexibleSpace: FlexibleSpaceBar(
+        //     title: Text("Settings & Info"),
+        //     centerTitle: true,
+        //   ),
+        // ),
+        SliverAppBarWidget(
+          title: 'Settings & Info',
+          punch: 'Notes. Papers. Quizzes. Sorted!',
+          bpadding: 0,
+          expHeight: 170,
+          tintColor: Theme.of(context).scaffoldBackgroundColor,
+          paddreq: false,
+        ),
+        SliverList(
+          delegate: SliverChildListDelegate([
+            Padding(
+              padding: const EdgeInsets.only(left: 10),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  _buildSectionTitle(context, "Favourites"),
+                  _buildListTile(
+                    context,
+                    title: "Bookmarks",
+                    subtitle: "Access your Bookmarks",
+                    icon: MoonIcons.generic_bookmark_alternative_24_regular,
+                    onTap: () {
+                      Navigator.of(context).push(
+                        MaterialPageRoute(
+                          builder: (context) => FavoritesPage(),
+                        ),
+                      );
+                    },
+                  ),
+                  _buildSectionTitle(context, "Theme"),
+                  ListTile(
+                    leading: Icon(MoonIcons.text_size_16_light),
+                    title: Text('Theme Mode'),
+                    subtitle: Text('Select Theme Mode'),
+                    trailing: MoonSwitch(
+                      value: Theme.of(context).brightness == Brightness.light,
+                      activeThumbWidget: Icon(MoonIcons.other_sun_24_regular),
+                      inactiveThumbWidget:
+                          Icon(MoonIcons.other_moon_24_regular),
+                      onChanged: (value) {
+                        themer.switchMode(
+                          Theme.of(context).brightness == Brightness.dark
+                              ? ThemeMode.light
+                              : ThemeMode.dark,
+                        );
+                      },
+                    ),
+                  ),
+                  _buildSectionTitle(context, "Help and Feedback"),
+                  _buildEmailTile(
+                      context,
+                      "Submit Notes or Papers",
+                      "Help us add more content so others can easily find it",
+                      "Sending new content to add in app"),
+                  _buildEmailTile(
+                      context,
+                      "Contact us!",
+                      "Reach out to us in case of any issues",
+                      "Help regarding app"),
+                  _buildSectionTitle(context, "Legal"),
+                  _buildListTile(
+                    context,
+                    title: "Disclaimer",
+                    subtitle: "See Disclaimer",
+                    icon: MoonIcons.generic_info_alternative_24_regular,
+                    onTap: () {
+                      showMoonModal<void>(
+                        context: context,
+                        builder: (BuildContext context) {
+                          return Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 32),
+                            child: MoonModal(
+                              child: IntrinsicHeight(
+                                child: Material(
+                                  type: MaterialType.transparency,
+                                  child: Padding(
+                                    padding: const EdgeInsets.all(15.0),
+                                    child: Column(
+                                      children: [
+                                        Icon(MoonIcons.generic_about_24_regular,
+                                            size: 30),
+                                        Divider(),
+                                        SizedBox(height: 8),
+                                        Text(
+                                            "All the content in the app is for personal use only! Please do not repost downloaded materials."),
+                                        Center(
+                                          child: MoonButton(
+                                            label: Text('Okay'),
+                                            onTap: () {
+                                              Navigator.of(context).pop();
+                                            },
+                                          ),
+                                        ),
+                                      ],
+                                    ),
                                   ),
-                                )
-                              ],
+                                ),
+                              ),
                             ),
+                          );
+                        },
+                      );
+                    },
+                  ),
+                  _buildListTile(
+                    context,
+                    title: "Licenses",
+                    subtitle: "See Open Source Licenses",
+                    icon: MoonIcons.files_code_24_regular,
+                    onTap: () {
+                      showLicensePage(
+                        context: context,
+                        applicationName: Constants().appName,
+                        applicationLegalese: Constants().appDev,
+                        applicationVersion: Constants().appVersion,
+                        applicationIcon: Card(
+                          child: SizedBox(
+                            height: 120,
+                            width: 120,
+                            child: Image.asset(
+                                fit: BoxFit.cover,
+                                height: 120,
+                                'assets/icon/icon.png'),
                           ),
                         ),
-                      ),
-                    ),
-                  );
-                },
-              );
-            },
-          ),
-          ListTile(
-            leading: Icon(MoonIcons.files_code_24_regular),
-            title: Text('Licenses'),
-            subtitle: Text('See Open Source Licenses'),
-            trailing: Icon(MoonIcons.arrows_right_24_regular),
-            onTap: () {
-              showLicensePage(
-                context: context,
-                applicationName: Constants().appName,
-                applicationLegalese: Constants().appDev,
-                applicationVersion: Constants().appVersion,
-                applicationIcon: Card(
-                  child: SizedBox(
-                    height: 120,
-                    width: 120,
-                    child: Image.asset(
-                        fit: BoxFit.cover, height: 120, 'assets/icon/icon.png'),
+                      );
+                    },
                   ),
-                ),
-              );
-            },
-          ),
-          Align(
-            alignment: Alignment.centerLeft,
-            child: Padding(
-              padding: const EdgeInsets.only(left: 10, top: 10, bottom: 3),
-              child: Text(
-                'App Info',
-                style: Theme.of(context)
-                    .textTheme
-                    .bodyLarge
-                    ?.copyWith(fontWeight: FontWeight.bold),
+                  SizedBox(height: 20),
+                  Center(
+                    child: Text("Made with ❤ using Flutter!",
+                        style: Theme.of(context).textTheme.bodyLarge!.copyWith(
+                            fontWeight: FontWeight.bold, fontSize: 18)),
+                  ),
+                  SizedBox(height: 20),
+                ],
               ),
             ),
-          ),
-          ListTile(
-            leading: Icon(MoonIcons.software_code_24_regular),
-            title: Text('App Version'),
-            subtitle: Text('v0.1-alpha'),
-          ),
-          Divider(),
-          SizedBox(
-            width: MediaQuery.of(context).size.width,
-            child: Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Text(
-                "Made with ❤ using Flutter!",
-                textAlign: TextAlign.center,
-                style: Theme.of(context).textTheme.bodyLarge!.copyWith(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 18,
-                    color: Theme.of(context).colorScheme.secondary),
-              ),
-            ),
-          ),
-        ],
+          ]),
+        ),
+      ],
+    );
+  }
+
+  Widget _buildSectionTitle(BuildContext context, String title) {
+    return Align(
+      alignment: Alignment.centerLeft,
+      child: Padding(
+        padding: const EdgeInsets.only(left: 10, top: 20, bottom: 5),
+        child: Text(
+          title,
+          style: Theme.of(context)
+              .textTheme
+              .bodyLarge
+              ?.copyWith(fontWeight: FontWeight.bold),
+        ),
       ),
+    );
+  }
+
+  Widget _buildListTile(BuildContext context,
+      {required String title,
+      required String subtitle,
+      required IconData icon,
+      required VoidCallback onTap}) {
+    return ListTile(
+      leading: Icon(icon),
+      title: Text(title),
+      subtitle: Text(subtitle),
+      trailing: Icon(MoonIcons.arrows_right_24_regular),
+      onTap: onTap,
+    );
+  }
+
+  Widget _buildEmailTile(
+      BuildContext context, String title, String subtitle, String subject) {
+    return _buildListTile(
+      context,
+      title: title,
+      subtitle: subtitle,
+      icon: MoonIcons.mail_envelope_24_regular,
+      onTap: () async {
+        final Email email = Email(
+          body: '',
+          subject: subject,
+          recipients: ['paradoxstudios91@gmail.com'],
+          isHTML: false,
+        );
+        await FlutterEmailSender.send(email);
+      },
     );
   }
 }

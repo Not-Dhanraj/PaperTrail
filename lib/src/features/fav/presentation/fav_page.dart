@@ -17,7 +17,12 @@ class FavoritesPage extends ConsumerWidget {
     return Scaffold(
       body: CustomScrollView(
         slivers: [
-          SliverAppBarWidget(title: 'Bookmarks', punch: 'Your saved subjects'),
+          SliverAppBarWidget(
+            title: 'Bookmarks',
+            punch: 'Your saved subjects',
+            tintColor: Theme.of(context).scaffoldBackgroundColor,
+            expHeight: 200,
+          ),
           SliverList.builder(
             itemCount: favoriteSubjects.length,
             itemBuilder: (context, index) {
@@ -111,11 +116,6 @@ class FavoritesPage extends ConsumerWidget {
           )
         ],
       ),
-      floatingActionButton: FloatingActionButton(
-          child: Icon(MoonIcons.arrows_left_24_regular),
-          onPressed: () {
-            Navigator.of(context).pop();
-          }),
     );
   }
 }

@@ -40,9 +40,11 @@ class _ExamsPageState extends ConsumerState<ExamsPage>
       slivers: [
         SliverAppBarWidget(
           title: 'PYQ\'s',
-          punch: 'Get Midtern, Endterm and Quizzes question papers',
+          punch: 'Get Previous year question papers',
           expHeight: 170,
+          tintColor: Theme.of(context).primaryColor,
           paddreq: false,
+          bpadding: 8,
         ),
         SliverPersistentHeader(
           pinned: true,

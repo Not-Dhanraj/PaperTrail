@@ -60,6 +60,7 @@ class ItemPage extends ConsumerWidget {
             title: type,
             punch: 'Explore ${subCode.join(', ')}',
             expHeight: 200,
+            tintColor: Theme.of(context).scaffoldBackgroundColor,
           ),
           SliverFillRemaining(
             child: FutureBuilder<List<ItemsInfo>>(
