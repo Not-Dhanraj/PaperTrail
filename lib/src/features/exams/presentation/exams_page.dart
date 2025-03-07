@@ -46,22 +46,36 @@ class _ExamsPageState extends ConsumerState<ExamsPage>
           paddreq: false,
           bpadding: 8,
         ),
-        SliverPersistentHeader(
-          pinned: true,
-          delegate: _SliverAppBarDelegate(
-              TabBar(
-                splashBorderRadius: BorderRadius.circular(6),
-                isScrollable: true,
-                tabAlignment: TabAlignment.start,
-                controller: tabController,
-                tabs: [
-                  Tab(text: 'Midterms'),
-                  Tab(text: 'End Terms'),
-                  Tab(text: 'Quizzes'),
-                ],
-              ),
-              Theme.of(context).scaffoldBackgroundColor),
+        SliverToBoxAdapter(
+          child: TabBar(
+            splashBorderRadius: BorderRadius.circular(6),
+            isScrollable: true,
+            tabAlignment: TabAlignment.start,
+            controller: tabController,
+            tabs: [
+              Tab(text: 'Midterms'),
+              Tab(text: 'End Terms'),
+              Tab(text: 'Quizzes'),
+            ],
+          ),
         ),
+
+        // SliverPersistentHeader(
+        //   pinned: true,
+        //   delegate: _SliverAppBarDelegate(
+        //       TabBar(
+        //         splashBorderRadius: BorderRadius.circular(6),
+        //         isScrollable: true,
+        //         tabAlignment: TabAlignment.start,
+        //         controller: tabController,
+        //         tabs: [
+        //           Tab(text: 'Midterms'),
+        //           Tab(text: 'End Terms'),
+        //           Tab(text: 'Quizzes'),
+        //         ],
+        //       ),
+        //       Theme.of(context).scaffoldBackgroundColor),
+        // ),
         SliverFillRemaining(
           child: TabBarView(
             controller: tabController,
