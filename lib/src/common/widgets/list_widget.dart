@@ -33,12 +33,14 @@ class ListWidget extends StatelessWidget {
                 Theme.of(context).dividerColor.withValues(alpha: 0.5),
             label: Text('View'),
             onTap: () {
-              Navigator.of(context).push(MaterialPageRoute(
-                builder: (context) {
-                  return ItemPage(
-                      type: type, subId: sub.id, subCode: sub.subCode);
-                },
-              ));
+              Navigator.of(context).push(
+                MaterialPageRoute(
+                  builder: (context) {
+                    return ItemPage(
+                        type: type, subId: sub.id, subCode: sub.subCode);
+                  },
+                ),
+              );
             },
           ),
           // onTap: () {},

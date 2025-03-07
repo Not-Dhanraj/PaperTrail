@@ -84,38 +84,39 @@ class ItemPage extends ConsumerWidget {
                       itemBuilder: (context, index) {
                         var name = data.elementAt(index).fName;
                         return Padding(
-                          padding: const EdgeInsets.symmetric(
-                              horizontal: 8, vertical: 4),
-                          child: ListTile(
-                            shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(6)),
-                            leading: MoonAvatar(
-                              backgroundColor: Theme.of(context)
-                                  .colorScheme
-                                  .surface
-                                  .withValues(alpha: 0.5),
-                              content: Icon(MoonIcons.files_add_24_regular),
-                            ),
-                            title: Text(
-                              name[0].toUpperCase() +
-                                  name.substring(1).toLowerCase(),
-                            ),
-                            subtitle: Text("Subject Code: $subCode"),
-                            trailing: MoonButton(
-                              height: 35,
-                              backgroundColor: Theme.of(context)
-                                  .dividerColor
-                                  .withValues(alpha: 0.2),
-                              label: Text('View'),
-                              onTap: () {
-                                ref
-                                    .read(downloadProvider)
-                                    .downloadFileAndNavigate(
-                                      context,
-                                      data.elementAt(index).fLink,
-                                      data.elementAt(index).fName,
-                                    );
-                              },
+                          padding: const EdgeInsets.symmetric(horizontal: 8),
+                          child: Card(
+                            child: ListTile(
+                              shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(6)),
+                              leading: MoonAvatar(
+                                backgroundColor: Theme.of(context)
+                                    .colorScheme
+                                    .surface
+                                    .withValues(alpha: 0.5),
+                                content: Icon(MoonIcons.files_add_24_regular),
+                              ),
+                              title: Text(
+                                name[0].toUpperCase() +
+                                    name.substring(1).toLowerCase(),
+                              ),
+                              subtitle: Text("Subject Code: $subCode"),
+                              trailing: MoonButton(
+                                height: 35,
+                                backgroundColor: Theme.of(context)
+                                    .dividerColor
+                                    .withValues(alpha: 0.2),
+                                label: Text('View file'),
+                                onTap: () {
+                                  ref
+                                      .read(downloadProvider)
+                                      .downloadFileAndNavigate(
+                                        context,
+                                        data.elementAt(index).fLink,
+                                        data.elementAt(index).fName,
+                                      );
+                                },
+                              ),
                             ),
                           ),
                         );
