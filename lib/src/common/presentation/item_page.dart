@@ -59,7 +59,7 @@ class ItemPage extends ConsumerWidget {
           SliverAppBarWidget(
             title: type,
             punch: 'Explore ${subCode.join(', ')}',
-            expHeight: 200,
+            expHeight: 250,
             tintColor: Theme.of(context).scaffoldBackgroundColor,
           ),
           SliverFillRemaining(

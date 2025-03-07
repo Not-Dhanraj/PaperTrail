@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:moon_design/moon_design.dart';
 import 'package:papertrail/src/common/data/sub_data.dart';
+import 'package:papertrail/src/common/presentation/item_page.dart';
 import 'package:papertrail/src/common/widgets/sliver_appbar.dart';
 import 'package:papertrail/src/features/fav/services/fav_provider.dart';
 
@@ -21,99 +22,142 @@ class FavoritesPage extends ConsumerWidget {
             title: 'Bookmarks',
             punch: 'Your saved subjects',
             tintColor: Theme.of(context).scaffoldBackgroundColor,
-            expHeight: 200,
+            expHeight: 250,
           ),
-          SliverList.builder(
-            itemCount: favoriteSubjects.length,
-            itemBuilder: (context, index) {
-              final subject = favoriteSubjects[index];
+          favoriteSubjects.isNotEmpty
+              ? SliverList.builder(
+                  itemCount: favoriteSubjects.length,
+                  itemBuilder: (context, index) {
+                    final subject = favoriteSubjects[index];
 
-              return Card(
-                margin: EdgeInsets.symmetric(horizontal: 8, vertical: 4),
-                child: ListTile(
-                  title: Text(subject.subName,
-                      style: TextStyle(fontWeight: FontWeight.bold)),
-                  subtitle: Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      Align(
-                          alignment: Alignment.centerLeft,
-                          child: Text("Code: ${subject.subCode.join(", ")}")),
-                      SizedBox(
-                        height: 5,
-                      ),
-                      SingleChildScrollView(
-                        scrollDirection: Axis.horizontal,
-                        physics: ScrollPhysics(),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
+                    return Card(
+                      margin: EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+                      child: ListTile(
+                        title: Text(subject.subName,
+                            style: TextStyle(fontWeight: FontWeight.bold)),
+                        subtitle: Column(
+                          mainAxisAlignment: MainAxisAlignment.start,
                           children: [
-                            if (subject.quizItms > 0)
-                              MoonButton(
-                                padding: EdgeInsets.symmetric(horizontal: 8),
-                                height: 35,
-                                backgroundColor: Theme.of(context)
-                                    .dividerColor
-                                    .withValues(alpha: 0.5),
-                                onTap: () {
-                                  // Handle quiz action
-                                },
-                                label: Text("Quiz"),
-                              ),
+                            Align(
+                                alignment: Alignment.centerLeft,
+                                child: Text(
+                                    "Code: ${subject.subCode.join(", ")}")),
                             SizedBox(
-                              width: 5,
+                              height: 5,
                             ),
-                            if (subject.mtItm > 0)
-                              MoonButton(
-                                padding: EdgeInsets.symmetric(horizontal: 8),
-                                height: 35,
-                                backgroundColor: Theme.of(context)
-                                    .dividerColor
-                                    .withValues(alpha: 0.5),
-                                onTap: () {
-                                  // Handle midterm action
-                                },
-                                label: Text("Midterm"),
+                            SingleChildScrollView(
+                              scrollDirection: Axis.horizontal,
+                              physics: ScrollPhysics(),
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  if (subject.quizItms > 0)
+                                    MoonButton(
+                                      padding:
+                                          EdgeInsets.symmetric(horizontal: 8),
+                                      height: 35,
+                                      backgroundColor: Theme.of(context)
+                                          .dividerColor
+                                          .withValues(alpha: 0.5),
+                                      onTap: () {
+                                        Navigator.of(context).push(
+                                          MaterialPageRoute(
+                                              builder: (context) => ItemPage(
+                                                    type: 'Quiz',
+                                                    subId: subject.id,
+                                                    subCode: subject.subCode,
+                                                  )),
+                                        );
+                                      },
+                                      label: Text("Quiz"),
+                                    ),
+                                  SizedBox(
+                                    width: 5,
+                                  ),
+                                  if (subject.mtItm > 0)
+                                    MoonButton(
+                                      padding:
+                                          EdgeInsets.symmetric(horizontal: 8),
+                                      height: 35,
+                                      backgroundColor: Theme.of(context)
+                                          .dividerColor
+                                          .withValues(alpha: 0.5),
+                                      onTap: () {
+                                        Navigator.of(context).push(
+                                          MaterialPageRoute(
+                                              builder: (context) => ItemPage(
+                                                    type: 'Mid Term',
+                                                    subId: subject.id,
+                                                    subCode: subject.subCode,
+                                                  )),
+                                        );
+                                      },
+                                      label: Text("Midterm"),
+                                    ),
+                                  SizedBox(
+                                    width: 5,
+                                  ),
+                                  if (subject.etItm > 0)
+                                    MoonButton(
+                                      padding:
+                                          EdgeInsets.symmetric(horizontal: 8),
+                                      height: 35,
+                                      backgroundColor: Theme.of(context)
+                                          .dividerColor
+                                          .withValues(alpha: 0.5),
+                                      onTap: () {
+                                        Navigator.of(context).push(
+                                          MaterialPageRoute(
+                                              builder: (context) => ItemPage(
+                                                    type: 'End Term',
+                                                    subId: subject.id,
+                                                    subCode: subject.subCode,
+                                                  )),
+                                        );
+                                      },
+                                      label: Text("Endterm"),
+                                    ),
+                                  SizedBox(
+                                    width: 5,
+                                  ),
+                                  if (subject.ntItm > 0)
+                                    MoonButton(
+                                      padding:
+                                          EdgeInsets.symmetric(horizontal: 8),
+                                      height: 35,
+                                      backgroundColor: Theme.of(context)
+                                          .dividerColor
+                                          .withValues(alpha: 0.5),
+                                      onTap: () {
+                                        Navigator.of(context).push(
+                                          MaterialPageRoute(
+                                              builder: (context) => ItemPage(
+                                                    type: 'Notes',
+                                                    subId: subject.id,
+                                                    subCode: subject.subCode,
+                                                  )),
+                                        );
+                                      },
+                                      label: Text("Notes"),
+                                    ),
+                                ],
                               ),
-                            SizedBox(
-                              width: 5,
                             ),
-                            if (subject.etItm > 0)
-                              MoonButton(
-                                padding: EdgeInsets.symmetric(horizontal: 8),
-                                height: 35,
-                                backgroundColor: Theme.of(context)
-                                    .dividerColor
-                                    .withValues(alpha: 0.5),
-                                onTap: () {
-                                  // Handle endterm action
-                                },
-                                label: Text("Endterm"),
-                              ),
-                            SizedBox(
-                              width: 5,
-                            ),
-                            if (subject.ntItm > 0)
-                              MoonButton(
-                                padding: EdgeInsets.symmetric(horizontal: 8),
-                                height: 35,
-                                backgroundColor: Theme.of(context)
-                                    .dividerColor
-                                    .withValues(alpha: 0.5),
-                                onTap: () {
-                                  // Handle notes action
-                                },
-                                label: Text("Notes"),
-                              ),
                           ],
                         ),
                       ),
-                    ],
+                    );
+                  },
+                )
+              : SliverFillRemaining(
+                  child: Align(
+                    alignment: Alignment.center,
+                    child: Text(
+                      'Quick Tip: Tap on Bookmark icon to add and remove bookmarks :)',
+                      textAlign: TextAlign.center,
+                    ),
                   ),
                 ),
-              );
-            },
-          )
         ],
       ),
     );

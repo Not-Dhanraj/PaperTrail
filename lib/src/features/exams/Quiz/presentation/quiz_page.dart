@@ -22,6 +22,7 @@ class QuizPage extends ConsumerWidget {
         Padding(
           padding: const EdgeInsets.only(top: 14, bottom: 5, left: 8, right: 8),
           child: MoonTextInput(
+            height: 45,
             hintText: "Search in Quizzes",
             onChanged: (String value) =>
                 ref.read(searchQueryProvider.notifier).state = value,

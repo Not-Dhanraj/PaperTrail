@@ -23,7 +23,7 @@ class NotesPage extends ConsumerWidget {
           title: 'Notes',
           punch: 'Get your study material.',
           paddreq: false,
-          expHeight: 170,
+          expHeight: 220,
           bpadding: 5,
           tintColor: Theme.of(context).scaffoldBackgroundColor,
         ),
@@ -32,6 +32,7 @@ class NotesPage extends ConsumerWidget {
             padding:
                 const EdgeInsets.only(top: 14, bottom: 12, left: 8, right: 8),
             child: MoonTextInput(
+              height: 45,
               hintText: "Search in Notes",
               onChanged: (String value) =>
                   ref.read(searchQueryProvider.notifier).state = value,

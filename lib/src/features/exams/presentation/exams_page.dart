@@ -41,7 +41,7 @@ class _ExamsPageState extends ConsumerState<ExamsPage>
         SliverAppBarWidget(
           title: 'PYQ\'s',
           punch: 'Get Previous year question papers',
-          expHeight: 170,
+          expHeight: 220,
           tintColor: Theme.of(context).primaryColor,
           paddreq: false,
           bpadding: 8,

@@ -127,7 +127,7 @@ class SettingsPage extends ConsumerWidget {
           title: 'Settings & Info',
           punch: 'Notes. Papers. Quizzes. Sorted!',
           bpadding: 0,
-          expHeight: 170,
+          expHeight: 220,
           tintColor: Theme.of(context).scaffoldBackgroundColor,
           paddreq: false,
         ),

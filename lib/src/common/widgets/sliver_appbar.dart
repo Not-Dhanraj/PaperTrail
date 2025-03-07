@@ -19,6 +19,7 @@ class SliverAppBarWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SliverAppBar(
+      toolbarHeight: 70,
       surfaceTintColor: tintColor,
       expandedHeight: expHeight.toDouble(),
       floating: false,
