@@ -7,6 +7,8 @@ class SliverAppBarWidget extends StatelessWidget {
   final Color tintColor;
   final bool paddreq;
   final int bpadding;
+  final int bTpadding;
+  final PreferredSizeWidget? bottomwid;
   const SliverAppBarWidget(
       {super.key,
       required this.title,
@@ -14,12 +16,15 @@ class SliverAppBarWidget extends StatelessWidget {
       required this.tintColor,
       this.expHeight = 210,
       this.bpadding = 20,
-      this.paddreq = true});
+      this.paddreq = true,
+      this.bTpadding = 21,
+      this.bottomwid});
 
   @override
   Widget build(BuildContext context) {
     return SliverAppBar(
       toolbarHeight: 70,
+      bottom: bottomwid,
       surfaceTintColor: tintColor,
       expandedHeight: expHeight.toDouble(),
       floating: false,
@@ -36,7 +41,7 @@ class SliverAppBarWidget extends StatelessWidget {
               left: paddreq && isCollapsed
                   ? 56
                   : 16, // Shift right when collapsed
-              bottom: 21,
+              bottom: bTpadding.toDouble(),
             ),
             title: isCollapsed
                 ? Text(

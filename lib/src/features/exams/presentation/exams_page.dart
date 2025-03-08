@@ -44,46 +44,68 @@ class _ExamsPageState extends ConsumerState<ExamsPage>
 
   @override
   Widget build(BuildContext context) {
-    return CustomScrollView(
-      slivers: [
-        SliverAppBarWidget(
-          title: 'PYQ\'s',
-          punch: 'Get Previous year question papers',
-          expHeight: 220,
-          tintColor: Theme.of(context).primaryColor,
-          paddreq: false,
-          bpadding: 8,
-        ),
-        SliverToBoxAdapter(
-          child: TabBar(
-            splashBorderRadius: BorderRadius.circular(6),
-            isScrollable: true,
-            tabAlignment: TabAlignment.start,
-            controller: tabController,
-            tabs: [
-              Tab(text: 'Midterms'),
-              Tab(text: 'End Terms'),
-              Tab(text: 'Quizzes'),
-            ],
-          ),
-        ),
-        SliverFillRemaining(
-          child: TabBarView(
-            controller: tabController,
-            children: [
-              MidTermsPage(
-                subData: midItems,
+    return DefaultTabController(
+      length: 3,
+      child: NestedScrollView(
+        headerSliverBuilder: (context, innerBoxIsScrolled) {
+          return [
+            SliverAppBarWidget(
+              title: 'PYQ\'s',
+              punch: 'Get Previous year question papers',
+              expHeight: 264,
+              tintColor: Theme.of(context).primaryColor,
+              paddreq: false,
+              bpadding: 49,
+              bTpadding: 67,
+              bottomwid: _ColoredTabBar(
+                bgcolor: Theme.of(context).scaffoldBackgroundColor,
+                tabBar: TabBar(
+                  splashBorderRadius: BorderRadius.circular(6),
+                  isScrollable: true,
+                  tabAlignment: TabAlignment.start,
+                  controller: tabController,
+                  tabs: [
+                    Tab(text: 'Midterms'),
+                    Tab(text: 'End Terms'),
+                    Tab(text: 'Quizzes'),
+                  ],
+                ),
               ),
-              EndTermPage(
-                subData: endItems,
-              ),
-              QuizPage(
-                subData: quizItems,
-              ),
-            ],
-          ),
+            )
+          ];
+        },
+        body: TabBarView(
+          controller: tabController,
+          children: [
+            MidTermsPage(
+              subData: midItems,
+            ),
+            EndTermPage(
+              subData: endItems,
+            ),
+            QuizPage(
+              subData: quizItems,
+            ),
+          ],
         ),
-      ],
+      ),
     );
   }
+}
+
+class _ColoredTabBar extends Container implements PreferredSizeWidget {
+  _ColoredTabBar({required this.bgcolor, required this.tabBar});
+
+  final Color bgcolor;
+  final TabBar tabBar;
+
+  @override
+  Size get preferredSize => tabBar.preferredSize;
+
+  @override
+  Widget build(BuildContext context) => Container(
+        height: kToolbarHeight - 5,
+        color: bgcolor,
+        child: tabBar,
+      );
 }
