@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:papertrail/src/common/data/sub_data.dart';
+import 'package:papertrail/src/common/domain/sub_items.dart';
 import 'package:papertrail/src/common/widgets/sliver_appbar.dart';
 import 'package:papertrail/src/features/exams/Quiz/presentation/quiz_page.dart';
 import 'package:papertrail/src/features/exams/presentation/endt_page.dart';
@@ -16,16 +18,22 @@ class ExamsPage extends ConsumerStatefulWidget {
 class _ExamsPageState extends ConsumerState<ExamsPage>
     with SingleTickerProviderStateMixin {
   late TabController tabController;
-
+  late Iterable<SubjectItems> midItems;
+  late Iterable<SubjectItems> endItems;
+  late Iterable<SubjectItems> quizItems;
   @override
   void initState() {
-    super.initState();
+    var initData = ref.read(subjectDataProvider);
+    midItems = initData.where((obj) => obj.mtItm != 0);
+    endItems = initData.where((obj) => obj.etItm != 0);
+    quizItems = initData.where((obj) => obj.quizItms != 0);
     tabController = TabController(length: 3, vsync: this);
     tabController.addListener(() {
       if (tabController.indexIsChanging) {
         ref.invalidate(searchQueryProvider); // Reset search when tab changes
       }
     });
+    super.initState();
   }
 
   @override
@@ -59,62 +67,23 @@ class _ExamsPageState extends ConsumerState<ExamsPage>
             ],
           ),
         ),
-
-        // SliverPersistentHeader(
-        //   pinned: true,
-        //   delegate: _SliverAppBarDelegate(
-        //       TabBar(
-        //         splashBorderRadius: BorderRadius.circular(6),
-        //         isScrollable: true,
-        //         tabAlignment: TabAlignment.start,
-        //         controller: tabController,
-        //         tabs: [
-        //           Tab(text: 'Midterms'),
-        //           Tab(text: 'End Terms'),
-        //           Tab(text: 'Quizzes'),
-        //         ],
-        //       ),
-        //       Theme.of(context).scaffoldBackgroundColor),
-        // ),
         SliverFillRemaining(
           child: TabBarView(
             controller: tabController,
             children: [
-              MidTermsPage(),
-              EndTermPage(),
-              QuizPage(),
+              MidTermsPage(
+                subData: midItems,
+              ),
+              EndTermPage(
+                subData: endItems,
+              ),
+              QuizPage(
+                subData: quizItems,
+              ),
             ],
           ),
         ),
       ],
     );
-  }
-}
-
-/// Persistent TabBar header with a red background.
-class _SliverAppBarDelegate extends SliverPersistentHeaderDelegate {
-  final TabBar tabBar;
-  final Color color;
-
-  _SliverAppBarDelegate(this.tabBar, this.color);
-
-  @override
-  double get minExtent => tabBar.preferredSize.height;
-
-  @override
-  double get maxExtent => tabBar.preferredSize.height;
-
-  @override
-  Widget build(
-      BuildContext context, double shrinkOffset, bool overlapsContent) {
-    return Container(
-      color: color, // Red background color for the TabBar
-      child: tabBar,
-    );
-  }
-
-  @override
-  bool shouldRebuild(_SliverAppBarDelegate oldDelegate) {
-    return false;
   }
 }

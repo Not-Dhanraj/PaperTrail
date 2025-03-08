@@ -1,19 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:moon_design/moon_design.dart';
-import 'package:papertrail/src/common/data/sub_data.dart';
+import 'package:papertrail/src/common/domain/sub_items.dart';
 import 'package:papertrail/src/common/widgets/list_widget.dart';
 import 'package:papertrail/src/features/search/services/search_service.dart';
 
 class MidTermsPage extends ConsumerWidget {
-  const MidTermsPage({super.key});
+  final Iterable<SubjectItems> subData;
+  const MidTermsPage({super.key, required this.subData});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    var initData = ref.watch(subjectDataProvider);
     var query = ref.watch(searchQueryProvider).toLowerCase();
-    var subData = initData.where((obj) => obj.mtItm != 0);
-
     var filteredData = subData.where((subject) =>
         subject.subName.toLowerCase().contains(query) ||
         subject.subCode.any((code) => code.toLowerCase().contains(query)));
