@@ -36,7 +36,7 @@ class SliverAppBarWidget extends StatelessWidget {
               left: paddreq && isCollapsed
                   ? 56
                   : 16, // Shift right when collapsed
-              bottom: 14,
+              bottom: 21,
             ),
             title: isCollapsed
                 ? Text(

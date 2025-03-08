@@ -55,39 +55,41 @@ class SettingsPage extends ConsumerWidget {
         icon: MoonIcons.generic_info_alternative_24_regular,
         onTap: () {
           Future.microtask(() {
-            showMoonModal<void>(
-                context: context,
-                builder: (BuildContext context) {
-                  return Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 32),
-                    child: MoonModal(
-                      child: IntrinsicHeight(
-                        child: Material(
-                          type: MaterialType.transparency,
-                          child: Padding(
-                            padding: const EdgeInsets.all(15.0),
-                            child: Column(
-                              children: [
-                                Icon(MoonIcons.generic_about_24_regular,
-                                    size: 30),
-                                Divider(),
-                                SizedBox(height: 8),
-                                Text(
-                                    "All the content in the app is for personal use only! Please do not repost downloaded materials."),
-                                Center(
-                                  child: MoonButton(
-                                    label: Text('Okay'),
-                                    onTap: () => Navigator.of(context).pop(),
+            if (context.mounted) {
+              showMoonModal<void>(
+                  context: context,
+                  builder: (BuildContext context) {
+                    return Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 32),
+                      child: MoonModal(
+                        child: IntrinsicHeight(
+                          child: Material(
+                            type: MaterialType.transparency,
+                            child: Padding(
+                              padding: const EdgeInsets.all(15.0),
+                              child: Column(
+                                children: [
+                                  Icon(MoonIcons.generic_about_24_regular,
+                                      size: 30),
+                                  Divider(),
+                                  SizedBox(height: 8),
+                                  Text(
+                                      "All the content in the app is for personal use only! Please do not repost downloaded materials."),
+                                  Center(
+                                    child: MoonButton(
+                                      label: Text('Okay'),
+                                      onTap: () => Navigator.of(context).pop(),
+                                    ),
                                   ),
-                                ),
-                              ],
+                                ],
+                              ),
                             ),
                           ),
                         ),
                       ),
-                    ),
-                  );
-                });
+                    );
+                  });
+            }
           });
         },
       ),

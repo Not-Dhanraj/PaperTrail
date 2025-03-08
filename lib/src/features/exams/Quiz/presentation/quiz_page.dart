@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:moon_design/moon_design.dart';
-import 'package:papertrail/src/common/data/sub_data.dart';
 import 'package:papertrail/src/common/domain/sub_items.dart';
 import 'package:papertrail/src/common/widgets/list_widget.dart';
 import 'package:papertrail/src/features/search/services/search_service.dart';

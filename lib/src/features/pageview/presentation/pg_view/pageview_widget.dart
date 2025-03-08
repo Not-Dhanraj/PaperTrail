@@ -16,15 +16,11 @@ class PageviewWidget extends ConsumerWidget {
       physics: const NeverScrollableScrollPhysics(),
       itemBuilder: (context, index) {
         return Entry.scale(
-          scale: 0.96,
-          duration: Duration(milliseconds: 250),
-          child: Entry.offset(
-              yOffset: 25,
-              duration: Duration(milliseconds: 300),
-              child: Entry.opacity(
-                  duration: Duration(milliseconds: 600),
-                  child: PageviewPages(index: index))),
-        );
+            scale: .96,
+            duration: Duration(milliseconds: 300),
+            child: Entry.opacity(
+                duration: Duration(milliseconds: 600),
+                child: PageviewPages(index: index)));
       },
     );
   }
