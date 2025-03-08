@@ -62,70 +62,72 @@ class ItemPage extends ConsumerWidget {
             expHeight: 250,
             tintColor: Theme.of(context).scaffoldBackgroundColor,
           ),
-          SliverFillRemaining(
-            child: FutureBuilder<List<ItemsInfo>>(
-              future: getItems(),
-              builder: (context, snapshot) {
-                if (snapshot.connectionState == ConnectionState.waiting) {
-                  return Center(child: CircularProgressIndicator());
-                } else if (snapshot.hasError) {
-                  return Text('Error: ${snapshot.error}');
-                } else if (snapshot.hasData) {
-                  var data = snapshot.data!;
+          FutureBuilder<List<ItemsInfo>>(
+            future: getItems(),
+            builder: (context, snapshot) {
+              if (snapshot.connectionState == ConnectionState.waiting) {
+                return SliverToBoxAdapter(
+                    child: Center(child: CircularProgressIndicator()));
+              } else if (snapshot.hasError) {
+                return SliverToBoxAdapter(
+                    child: Center(child: Text('Error: ${snapshot.error}')));
+              } else if (snapshot.hasData) {
+                var data = snapshot.data!;
 
-                  if (data.isNotEmpty) {
-                    return ListView.builder(
-                      itemCount: data.length,
-                      itemBuilder: (context, index) {
-                        var name = data.elementAt(index).fName;
-                        return Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 8),
-                          child: Card(
-                            child: ListTile(
-                              shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(6)),
-                              leading: MoonAvatar(
-                                backgroundColor: Theme.of(context)
-                                    .colorScheme
-                                    .surface
-                                    .withValues(alpha: 0.5),
-                                content: Icon(MoonIcons.files_add_24_regular),
-                              ),
-                              title: Text(
-                                name[0].toUpperCase() +
-                                    name.substring(1).toLowerCase(),
-                              ),
-                              subtitle: Text("Subject Code: $subCode"),
-                              trailing: MoonButton(
-                                height: 35,
-                                backgroundColor: Theme.of(context)
-                                    .dividerColor
-                                    .withValues(alpha: 0.2),
-                                label: Text('View file'),
-                                onTap: () {
-                                  ref
-                                      .read(downloadProvider)
-                                      .downloadFileAndNavigate(
-                                        context,
-                                        data.elementAt(index).fLink,
-                                        data.elementAt(index).fName,
-                                      );
-                                },
-                              ),
+                if (data.isNotEmpty) {
+                  return SliverList.builder(
+                    itemCount: data.length,
+                    itemBuilder: (context, index) {
+                      var name = data.elementAt(index).fName;
+                      return Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 8),
+                        child: Card(
+                          child: ListTile(
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(6)),
+                            leading: MoonAvatar(
+                              backgroundColor: Theme.of(context)
+                                  .colorScheme
+                                  .surface
+                                  .withValues(alpha: 0.5),
+                              content: Icon(MoonIcons.files_add_24_regular),
+                            ),
+                            title: Text(
+                              name[0].toUpperCase() +
+                                  name.substring(1).toLowerCase(),
+                            ),
+                            subtitle: Text("Subject Code: $subCode"),
+                            trailing: MoonButton(
+                              height: 35,
+                              backgroundColor: Theme.of(context)
+                                  .dividerColor
+                                  .withValues(alpha: 0.2),
+                              label: Text('View file'),
+                              onTap: () {
+                                ref
+                                    .read(downloadProvider)
+                                    .downloadFileAndNavigate(
+                                      context,
+                                      data.elementAt(index).fLink,
+                                      data.elementAt(index).fName,
+                                    );
+                              },
                             ),
                           ),
-                        );
-                      },
-                    );
-                  } else {
-                    return Center(
+                        ),
+                      );
+                    },
+                  );
+                } else {
+                  return SliverToBoxAdapter(
+                    child: Center(
                       child: Text("No $type papers found"),
-                    );
-                  }
+                    ),
+                  );
                 }
-                return Container();
-              },
-            ),
+              }
+              return Container();
+            },
           ),
         ],
       ),

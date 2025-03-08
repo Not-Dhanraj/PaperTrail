@@ -45,103 +45,91 @@ class FavoritesPage extends ConsumerWidget {
                             SizedBox(
                               height: 5,
                             ),
-                            SingleChildScrollView(
-                              scrollDirection: Axis.horizontal,
-                              physics: ScrollPhysics(),
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  if (subject.quizItms > 0)
-                                    MoonButton(
-                                      padding:
-                                          EdgeInsets.symmetric(horizontal: 8),
-                                      height: 35,
-                                      backgroundColor: Theme.of(context)
-                                          .dividerColor
-                                          .withValues(alpha: 0.5),
-                                      onTap: () {
-                                        Navigator.of(context).push(
-                                          MaterialPageRoute(
-                                              builder: (context) => ItemPage(
-                                                    type: 'Quiz',
-                                                    subId: subject.id,
-                                                    subCode: subject.subCode,
-                                                  )),
-                                        );
-                                      },
-                                      label: Text("Quiz"),
-                                    ),
-                                  SizedBox(
-                                    width: 5,
+                            Wrap(
+                              runSpacing: 6,
+                              spacing: 10.0,
+                              children: [
+                                if (subject.quizItms > 0)
+                                  MoonButton(
+                                    padding:
+                                        EdgeInsets.symmetric(horizontal: 8),
+                                    height: 35,
+                                    backgroundColor: Theme.of(context)
+                                        .dividerColor
+                                        .withValues(alpha: 0.5),
+                                    onTap: () {
+                                      Navigator.of(context).push(
+                                        MaterialPageRoute(
+                                            builder: (context) => ItemPage(
+                                                  type: 'Quiz',
+                                                  subId: subject.id,
+                                                  subCode: subject.subCode,
+                                                )),
+                                      );
+                                    },
+                                    label: Text("Quiz"),
                                   ),
-                                  if (subject.mtItm > 0)
-                                    MoonButton(
-                                      padding:
-                                          EdgeInsets.symmetric(horizontal: 8),
-                                      height: 35,
-                                      backgroundColor: Theme.of(context)
-                                          .dividerColor
-                                          .withValues(alpha: 0.5),
-                                      onTap: () {
-                                        Navigator.of(context).push(
-                                          MaterialPageRoute(
-                                              builder: (context) => ItemPage(
-                                                    type: 'Mid Term',
-                                                    subId: subject.id,
-                                                    subCode: subject.subCode,
-                                                  )),
-                                        );
-                                      },
-                                      label: Text("Midterm"),
-                                    ),
-                                  SizedBox(
-                                    width: 5,
+                                if (subject.mtItm > 0)
+                                  MoonButton(
+                                    padding:
+                                        EdgeInsets.symmetric(horizontal: 8),
+                                    height: 35,
+                                    backgroundColor: Theme.of(context)
+                                        .dividerColor
+                                        .withValues(alpha: 0.5),
+                                    onTap: () {
+                                      Navigator.of(context).push(
+                                        MaterialPageRoute(
+                                            builder: (context) => ItemPage(
+                                                  type: 'Mid Term',
+                                                  subId: subject.id,
+                                                  subCode: subject.subCode,
+                                                )),
+                                      );
+                                    },
+                                    label: Text("Midterm"),
                                   ),
-                                  if (subject.etItm > 0)
-                                    MoonButton(
-                                      padding:
-                                          EdgeInsets.symmetric(horizontal: 8),
-                                      height: 35,
-                                      backgroundColor: Theme.of(context)
-                                          .dividerColor
-                                          .withValues(alpha: 0.5),
-                                      onTap: () {
-                                        Navigator.of(context).push(
-                                          MaterialPageRoute(
-                                              builder: (context) => ItemPage(
-                                                    type: 'End Term',
-                                                    subId: subject.id,
-                                                    subCode: subject.subCode,
-                                                  )),
-                                        );
-                                      },
-                                      label: Text("Endterm"),
-                                    ),
-                                  SizedBox(
-                                    width: 5,
+                                if (subject.etItm > 0)
+                                  MoonButton(
+                                    padding:
+                                        EdgeInsets.symmetric(horizontal: 8),
+                                    height: 35,
+                                    backgroundColor: Theme.of(context)
+                                        .dividerColor
+                                        .withValues(alpha: 0.5),
+                                    onTap: () {
+                                      Navigator.of(context).push(
+                                        MaterialPageRoute(
+                                            builder: (context) => ItemPage(
+                                                  type: 'End Term',
+                                                  subId: subject.id,
+                                                  subCode: subject.subCode,
+                                                )),
+                                      );
+                                    },
+                                    label: Text("Endterm"),
                                   ),
-                                  if (subject.ntItm > 0)
-                                    MoonButton(
-                                      padding:
-                                          EdgeInsets.symmetric(horizontal: 8),
-                                      height: 35,
-                                      backgroundColor: Theme.of(context)
-                                          .dividerColor
-                                          .withValues(alpha: 0.5),
-                                      onTap: () {
-                                        Navigator.of(context).push(
-                                          MaterialPageRoute(
-                                              builder: (context) => ItemPage(
-                                                    type: 'Notes',
-                                                    subId: subject.id,
-                                                    subCode: subject.subCode,
-                                                  )),
-                                        );
-                                      },
-                                      label: Text("Notes"),
-                                    ),
-                                ],
-                              ),
+                                if (subject.ntItm > 0)
+                                  MoonButton(
+                                    padding:
+                                        EdgeInsets.symmetric(horizontal: 8),
+                                    height: 35,
+                                    backgroundColor: Theme.of(context)
+                                        .dividerColor
+                                        .withValues(alpha: 0.5),
+                                    onTap: () {
+                                      Navigator.of(context).push(
+                                        MaterialPageRoute(
+                                            builder: (context) => ItemPage(
+                                                  type: 'Notes',
+                                                  subId: subject.id,
+                                                  subCode: subject.subCode,
+                                                )),
+                                      );
+                                    },
+                                    label: Text("Notes"),
+                                  ),
+                              ],
                             ),
                           ],
                         ),
