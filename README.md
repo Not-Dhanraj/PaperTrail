@@ -23,9 +23,9 @@
 
 
 ## 📸 Screenshots
-| ![Photo 1](screenshots\Screenshot_20250323-092912.PaperTrail.png) | ![Photo 2](screenshots\Screenshot_20250323-092917.PaperTrail.png) |
+| ![Photo 1](screenshots/Screenshot_20250323-092912.PaperTrail.png) | ![Photo 2](screenshots/Screenshot_20250323-092917.PaperTrail.png) |
 |---------------------------------------------|---------------------------------------------|
-| ![Photo 3](screenshots\Screenshot_20250323-092931.PaperTrail.png) | ![Photo 4](screenshots\Screenshot_20250323-092959.PaperTrail.png) |
+| ![Photo 3](screenshots/Screenshot_20250323-092931.PaperTrail.png) | ![Photo 4](screenshots/Screenshot_20250323-092959.PaperTrail.png) |
 
 
 ## 🛠️ Installation
