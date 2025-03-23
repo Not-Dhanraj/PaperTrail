@@ -1,4 +1,4 @@
-  <a href="url"><img src="https://raw.githubusercontent.com/Not-Dhanraj/PaperTrail/a35ba50981fa9f3591a916e782a9ee92e0746ad6/assets/icon/icon.png?token=GHSAT0AAAAAAC6U7GAXGSWHSZT7NN37YWY4Z665D2Q" height="auto" width="80" style="border-radius:10%"></a>
+  <a href="url"><img src="assets\icon\icon.png" height="auto" width="80" style="border-radius:10%"></a>
   
   # PaperTrail
 
@@ -23,7 +23,10 @@
 
 
 ## 📸 Screenshots
-TODO
+| ![Photo 1](screenshots\Screenshot_20250323-092912.PaperTrail.png) | ![Photo 2](screenshots\Screenshot_20250323-092917.PaperTrail.png) |
+|---------------------------------------------|---------------------------------------------|
+| ![Photo 3](screenshots\Screenshot_20250323-092931.PaperTrail.png) | ![Photo 4](screenshots\Screenshot_20250323-092959.PaperTrail.png) |
+
 
 ## 🛠️ Installation
 
@@ -94,10 +97,10 @@ PaperTrail/
 Contributions are welcome! Feel free to **fork** this repository, make changes, and submit a pull request.
 
 ## 📜 License
-This project is licensed under the **MIT License**. See the [LICENSE](LICENSE) file for details.
+This project is licensed under the **GNU GENERAL PUBLIC LICENSE**. See the [LICENSE](LICENSE) file for details.
 
 ## 🌟 Support
-If you like this project, don't forget to **star** this repository. Have suggestions or issues? Open an [issue](https://github.com/yourusername/PaperTrail/issues)!
+If you like this project, don't forget to **star** this repository. Have suggestions or issues? Open an [issue](https://github.com/Not-Dhanraj/PaperTrail/issues)!
 
 ---
 Made with ❤️ using Flutter.
